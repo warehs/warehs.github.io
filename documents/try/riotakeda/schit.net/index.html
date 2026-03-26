@@ -1,40 +1,38 @@
 <style>
     .tree-table {
         border-collapse: collapse;
-        font-family: "MS Gothic", "Osaka-mono", monospace;
-        font-size: 14px;
+        font-family: "MS Gothic", "Osaka-mono", monospace; /* 等幅フォント */
+        line-height: 1.4;
     }
     .tree-table td {
-        padding: 2px 8px;
-        vertical-align: top;
+        padding: 0 10px;
     }
-    /* フォルダ・ファイル名の列 */
-    .name-col {
-        white-space: nowrap;
-    }
-    /* 説明文の列（赤字） */
-    .desc-col {
-        color: #d00;
-    }
-    /* 階層の記号を少し薄くする */
-    .indent {
-        color: #999;
-        margin-right: 4px;
-    }
+    /* フォルダやファイルの色分け（お好みで） */
+    .year { font-weight: bold; color: #333; }
+    .month { color: #555; }
+    .day { color: #777; }
+    .file { color: #0066cc; }
 </style>
 
 <table class="tree-table">
-    <thead>
-        </thead>
     <tbody>
-        <tr>
-            <td class="name-col">📁 MailTransfer</td>
-            <td class="desc-col"></td>
-        </tr>
-        <tr>
-            <td class="name-col"><span class="indent">└─</span>📁 WEB-INF</td>
-            <td class="desc-col"></td>
-        </tr>
+        <tr><td class="year">2023</td></tr>
+        <tr><td>　<span class="month">11</span></td></tr>
+        <tr><td>　　<span class="day">21</span></td></tr>
+        <tr><td>　　　<span class="file">index.html</span></td></tr>
+        
+        <tr><td>　<span class="month">12</span></td></tr>
+        <tr><td>　　<span class="day">21</span></td></tr>
+        <tr><td>　　　<span class="file">index.html</span></td></tr>
+
+        <tr><td class="year">2024</td></tr>
+        <tr><td>　<span class="month">01</span></td></tr>
+        <tr><td>　　<span class="day">09</span></td></tr>
+        <tr><td>　　　<span class="file">index.html</span></td></tr>
+        <tr><td>　　<span class="day">11</span></td></tr>
+        <tr><td>　　　<span class="file">index.html</span></td></tr>
+    </tbody>
+</table>        </tr>
         <tr>
             <td class="name-col"><span class="indent">　├─</span>📁 classes</td>
             <td class="desc-col"></td>
