@@ -1,0 +1,130 @@
+header{
+    background: #afeeee;
+    width:auto;
+    height: 80px;
+}
+.logo{
+    height: 34px;
+    width: auto;
+    padding: 24px 10px;
+    position: absolute;
+}
+header ul{
+    float: right;
+    padding: 12px;
+    font-size: 16px;
+    font-family:sans-serif;
+}
+header a{
+    padding: 0px 18px;
+}
+footer{
+    width: auto;
+    height: 30px;
+    background: #afeeee;
+    font-family: "Times New Roman";
+    font-style: italic;
+    font-size: 10px;
+    clear:both;
+}
+footer h1{
+    margin: 0px 10px;
+    float: right;
+}
+footer span{
+    font-family: serif;
+}
+main{
+    font-family: monospace;
+    margin: 0px;
+    padding: 0px;
+    margin: 1.25%;
+}
+main h1{
+    font-family: serif;
+    font-size: 35px;
+}
+main h2{
+    font-family: serif;
+    font-size: 20px;
+    margin:5px;
+}
+main h3{
+    font-family: serif;
+    font-size: 30px;
+    text-align: center;
+
+    margin: 0px;
+
+}
+main h4{
+    font-family: serif;
+    font-size: 18px;
+    text-align: center;
+    margin: 0px;
+}
+.top{
+    border: 5px solid #afeeee;
+    background-color: #e0ffff;
+    margin: 0px 0.8% 20px;
+}
+.structures{
+    font-family: monospace;
+    display: inline-block;
+}
+.structure{
+    width: 30%;
+    float: left;
+    margin: 0.9%;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+.structure img{
+    height: auto;
+    width: 98.5%;
+    float: left;
+    margin: 0.8% 0.8% 15px;
+    border-radius: 20px;
+}
+
+.title{
+    font-size: 30px;
+    margin: 10px;
+    font-family:monospace;
+}
+.date{
+    font-size: 20px;
+    margin: 10px;
+
+}
+.text{
+    font-size: 18px;
+    margin: 10px;
+
+}
+.structures span{
+    font-family: serif;
+}
+.develop{
+    border: 5px solid #afeeee;
+    background-color: #e0ffff;
+    margin: 0px 0.8% 0px;
+    text-align: center;
+}
+.to-construction{
+    display: block;
+    font-size: 25px;
+    padding: 15px 30px;
+    border: 1px solid white;
+    width: 130px;
+    background-color:#5dca88;
+    color: white;
+    box-shadow:3px 7px #1a7940;
+    margin: 20px 0px 40px;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+.to-construction:hover{
+    background-color: rgba(93, 202, 136, 0.7);
+}
