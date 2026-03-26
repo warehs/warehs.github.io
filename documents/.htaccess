@@ -1,0 +1,4 @@
+AuthUserFile "/home/hogehoge/.htpasswd"
+AuthName "Please enter your ID and Password." 
+AuthType BASIC 
+require valid-user 
