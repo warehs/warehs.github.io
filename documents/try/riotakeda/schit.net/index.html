@@ -2,32 +2,90 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ディレクトリ一覧</title>
+    <title>ディレクトリ構造</title>
     <style>
-        /* 文字を少し大きくし、リンクの線を消して見やすくしています */
-        body { font-family: sans-serif; line-height: 1.8; }
-        ul { list-style-type: "└ "; } /* 行頭をカギ線に */
-        ul ul { margin-left: 20px; }  /* 子要素を右にずらす */
-        a { text-decoration: none; color: #000; }
-        a:hover { text-decoration: underline; color: blue; }
+        .tree {
+            font-family: "MS Gothic", "Courier New", monospace; /* 等幅フォントがそれっぽいです */
+            line-height: 1.5;
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .tree ul {
+            list-style-type: none;
+            padding-left: 20px;
+            border-left: 1px dotted #999; /* 縦の点線 */
+        }
+        .tree li {
+            position: relative;
+            margin: 0;
+            padding: 0 12px;
+        }
+        /* 横の枝線 */
+        .tree li::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 0;
+            width: 10px;
+            border-top: 1px dotted #999;
+        }
+        /* 最後の枝が突き抜けないように調整 */
+        .tree li:last-child {
+            border-left: 1px solid white; 
+            margin-left: -1px;
+        }
+        
+        .folder { color: #b08d00; font-weight: bold; }
+        .file { color: #333; }
+        .comment { color: #d00; margin-left: 10px; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-    <strong>📁 ルートディレクトリ</strong>
-
-    <ul>
-        <li><a href="folder_A/">フォルダA</a>
-            <ul>
-                <li><a href="folder_A/file_B.html">ファイルB</a>
-                    <ul>
-                        <li><a href="folder_A/sub/file_C.pdf">ファイルC</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li><a href="file_D.jpg">ファイルD</a></li>
-    </ul>
+<ul class="tree">
+    <li><span class="folder">📁 MailTransfer</span>
+        <ul>
+            <li><span class="folder">📁 WEB-INF</span>
+                <ul>
+                    <li><span class="folder">📁 classes</span>
+                        <ul>
+                            <li><span class="folder">📁 to</span>
+                                <ul>
+                                    <li><span class="folder">📁 msn</span>
+                                        <ul>
+                                            <li><span class="folder">📁 wings</span>
+                                                <ul>
+                                                    <li><span class="folder">📁 codezine</span>
+                                                        <ul>
+                                                            <li><span class="file">📄 MailTransfer.class</span> <span class="comment">←メール送信時の処理を規定する...</span></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="folder">📁 data</span>
+                        <ul>
+                            <li><span class="file">📄 template.dat</span> <span class="comment">←メール送信時に利用する本文テンプレート</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="folder">📁 lb</span>
+                        <ul>
+                            <li><span class="file">📄 activation.jar</span> <span class="comment">←JAFの本体</span></li>
+                            <li><span class="file">📄 mail.jar</span> <span class="comment">←JavaMailの本体</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="file">📄 web.xml</span> <span class="comment">←デプロイメント・ディスクリプタ</span></li>
+                </ul>
+            </li>
+            <li><span class="file">📄 sample.jsp</span> <span class="comment">←MailTransferサーブレットの動作を確認するための...</span></li>
+        </ul>
+    </li>
+</ul>
 
 </body>
 </html>
