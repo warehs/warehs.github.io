@@ -1,0 +1,369 @@
+/* style.css */
+
+body{
+    padding-top: 50px;
+    background: linear-gradient(to top, #ebffc9, #fff);
+    background-attachment: fixed;
+}
+main.container, main.container-fluid {
+    background-color: #FFF;
+    margin-top: 0px;
+}
+.menu-header-tabs.nav-justified , .menu-footer-tabs.nav-justified{
+    margin-top: -10px ;
+    }
+
+/* header */
+.navbar-inverse {
+    background-color: #8dd300;
+    border: none;
+}
+.navbar-inverse .navbar-brand{
+    color: #FFF;
+}
+.navbar-inverse .navbar-nav > li > a{
+    color: #FFF;
+}
+#container-header .plugin-photo-albums {
+    margin-top: -30px;
+}
+#container-header .plugin-photo-albums {
+    margin-bottom: 10px;
+}
+#container-header .plugin-announcements {
+    margin-top: -22px;
+}
+.plugin-accessibility{
+    margin-top: 10px;
+}
+.breadcrumb{
+    background-color: #fff;
+    margin-top: -25px;
+    margin-bottom: -20px !important;
+}
+/*-----------------------------------------*/
+/* link */
+a {
+    color: #487000;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #487000;
+    text-decoration: underline;
+}
+.btn-success {
+    color: #555;
+    background-color: #d3d3d3;
+    border-color: #d3d3d3;
+}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+    color: #555;
+    background-color: #d3d3d3;
+    border-color: #d3d3d3;
+}
+.btn-primary {
+    color: #487000;
+    background-color: #ddf7af;
+    border-color: #ddf7af;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    color: #487000;
+    background-color: #ddf7af;
+    border-color: #ddf7af;
+}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: #fff;
+    background-color: #487000;
+}
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    color: #555;
+    background-color: #eaeaea;
+    border: 1px #c9c9c9 solid;
+}
+
+.list-group-item {
+    border: 1px solid #c9c9c9;
+}
+/* item */
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    color: #555;
+    background-color: #eaeaea;
+    border-color: #c9c9c9;
+}
+/* form */
+.btn-default {
+    color: #487000;
+    background-color: #ddf7af;
+    border-color: #ddf7af;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    color: #487000;
+    background-color: #ddf7af;
+    border-color: #ddf7af;
+}
+.btn-info{
+    background-color: #bde07d;
+    border-color: #bde07d;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active{
+    background-color: #bde07d;
+    border-color: #bde07d;
+}
+/* 8/13 修正分 */
+@media (min-width: 768px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 0px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+} 
+@media (min-width: 768px) {
+  ul.nav li.dropup:hover > ul.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 0px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+} 
+/*-----------------------------------------*/
+.nav-tabs > li {
+    background: linear-gradient(to right bottom, #edffc9, #d6f49f);
+    border: 1px solid #fff;
+}
+.nav-tabs > li > a{
+    color: #555;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
+    color: #487000;
+    font-weight:bold;
+    background: linear-gradient(to right bottom, #edffc9, #d6f49f) !important;
+    border-radius: 3px ;
+}
+.menu-header-tabs > li.active{
+    background: linear-gradient(to right bottom, #edffc9, #d6f49f);
+}
+.menu-header-tabs > li{
+    border-left: 1px solid #FFF !important;
+    border-top: none !important;
+    border-right: 3px solid #8dd300 !important;
+    border-bottom: 3px solid #8dd300 !important;
+    border-radius: 5px !important;
+    margin-left: 3px !important;
+}
+/*-----------------------------------------*/
+.nav-pills > li {
+    background: linear-gradient(to right bottom, #edffc9, #d6f49f);
+}
+.nav-pills > li > a{
+    color: #555;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover{
+    color: #487000;
+    font-weight:bold;
+}
+.menu-footer-tabs > li.active{
+    background: linear-gradient(to right bottom, #edffc9, #d6f49f) !important;
+}
+.menu-footer-tabs > li{
+    border-left: 1px solid #FFF !important;
+    border-top: none !important;
+    border-right: 3px solid #8dd300 !important;
+    border-bottom: 3px solid #8dd300 !important;
+    border-radius: 5px !important;
+    margin-left: 3px !important;
+}
+/*-----------------------------------------*/
+/* heading */
+.panel-default {
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+}
+.panel-default>.panel-heading {
+    background: #ddf7af;
+    color: #487000;
+    font-weight: bold;
+    border-top: 3px #8dd300 solid;
+    border-bottom: 1px #8dd300 solid;
+    border-radius: 0px;
+    line-height: 10px;
+}
+.panel-primary{
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+}
+.panel-primary>.panel-heading {
+    background: #ddf7af;
+    color: #487000;
+    font-weight: bold;
+    border-left: 4px #8dd300 solid;
+    border-bottom: 1px #8dd300 solid;
+    border-radius: 0px;
+    line-height: 14px;
+}
+.panel-info{
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+}
+.panel-info>.panel-heading {
+    background: #ddf7af;
+    color: #487000;
+    font-weight: bold;
+    border-bottom: none;
+    border-radius: 0px;
+    line-height: 15px;
+}
+.panel-success{
+    border: none;
+    box-shadow: none;
+}
+.panel-success>.panel-heading{
+    border: none;
+    color: #487000;
+    font-weight: bold;
+    line-height: 15px;
+    background-color: #eaeaea;
+    border-radius: 0px;
+}
+.panel-warning{
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+    background-color: #f9efef;
+    border: 1px #b72626 solid;
+}
+.panel-warning>.panel-heading{
+    border: none;
+    color: #b72626;
+    font-weight: bold;
+    line-height: 10px;
+    background-color: #eddede;
+    border-radius: 0px;
+    border-top: 2px #b72626 solid;
+    border-bottom: 1px #b72626 solid;
+}
+.panel-danger{
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+    background-color: #ddf7af;
+    color: #487000;
+    border: 1px #8dd300 solid;
+}
+.panel-danger>.panel-heading{
+    border: none;
+    color: #487000;
+    font-weight: bold;
+    background-position: 5px center;
+    background-color: #ddf7af;
+    border-radius: 0px;
+    line-height: 10px;
+}
+/* 6/26 登録フォームアンケート修正分 */
+.questionnaire-select-box li{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.questionnaire-select-box li:active {
+	color: #333;
+	background-color: #d4d4d4;
+	border-color: #8c8c8c;
+}
+.questionnaire-select-box li:hover {
+   	color: #333;
+  	background-color: #e6e6e6;
+   	border-color: #adadad;
+}
+
+.registration-select-box li{
+	color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.registration-select-box li:active {
+	color: #333;
+	background-color: #d4d4d4;
+	border-color: #8c8c8c;
+}
+.registration-select-box li:hover {
+   	color: #333;
+  	background-color: #e6e6e6;
+   	border-color: #adadad;
+}
+/* フッター非表示 */
+#nc-system-footer {
+  	display:none;
+}
+/* ドロップダウンメニューのヘッダー非表示 */
+.dropdown-menu .dropdown-header {
+    display:none;
+}
+/* ドロップダウンメニューの横棒非表示 */
+.dropdown-menu .divider {
+    display:none;
+}
+/* 汎用データベースWYSIWYGテキスト形式での改行表示 */
+.plugin-multidatabases .table-bordered>tbody>tr>td,
+.plugin-multidatabases .table-bordered>tbody>tr>th,
+.plugin-multidatabases .table-bordered>tfoot>tr>td,
+.plugin-multidatabases .table-bordered>tfoot>tr>th,
+.plugin-multidatabases .table-bordered>thead>tr>td,
+.plugin-multidatabases .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+    word-break: break-all;
+}
+/* 小テスト修正 */
+.quiz-select-box li{
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+.quiz-select-box li:active {
+	color: #333;
+	background-color: #d4d4d4;
+	border-color: #8c8c8c;
+}
+.quiz-select-box li:hover {
+   	color: #333;
+  	background-color: #e6e6e6;
+   	border-color: #adadad;
+}
+/* 登録フォームサブタイトル改行 */
+.plugin-registrations .panel-body h1>small::before{
+	content: "\A" ;
+	white-space: pre ;
+}
