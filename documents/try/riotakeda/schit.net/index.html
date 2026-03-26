@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ファイルディレクトリ</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 0 15px; background-color: #f9f9f9; }
+        h1 { border-bottom: 2px solid #007bff; padding-bottom: 10px; font-size: 1.5rem; }
+        .container { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 10px 0; }
+        
+        /* リストのデザイン */
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { border-bottom: 1px solid #eee; transition: background 0.2s; }
+        li:last-child { border-bottom: none; }
+        li:hover { background-color: #f1f8ff; }
+        
+        a { display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: #0056b3; font-weight: 500; }
+        
+        /* アイコン代わりのラベル */
+        .icon { font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; margin-right: 12px; min-width: 45px; text-align: center; color: white; text-transform: uppercase; }
+        .folder { background-color: #ffca28; color: #856404; } /* フォルダ色 */
+        .html { background-color: #e44d26; }
+        .pdf { background-color: #f44336; }
+        .img { background-color: #4caf50; }
+        .etc { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+
+    <h1>📁 マイプロジェクト / ファイル一覧</h1>
+
+    <div class="container">
+        <ul>
+            <li>
+                <a href="documents/">
+                    <span class="icon folder">DIR</span>
+                    資料用フォルダ
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html">
+                    <span class="icon html">HTML</span>
+                    このサイトについて
+                </a>
+            </li>
+
+            <li>
+                <a href="manual.pdf" target="_blank">
+                    <span class="icon pdf">PDF</span>
+                    利用マニュアル
+                </a>
+            </li>
+
+            <li>
+                <a href="photo.jpg">
+                    <span class="icon img">IMG</span>
+                    メインビジュアル画像
+                </a>
+            </li>
+
+            <li>
+                <a href="memo.txt">
+                    <span class="icon etc">FILE</span>
+                    作業用メモ.txt
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
