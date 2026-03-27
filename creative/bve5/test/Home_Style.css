@@ -1,0 +1,173 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+header{
+    background: #afeeee;
+    width:auto;
+    height: 80px;
+}
+.logo{
+    height: 34px;
+    width: auto;
+    padding: 24px 10px;
+    position: absolute;
+}
+header ul{
+    float: right;
+    padding: 12px;
+    font-size: 16px;
+    font-family:sans-serif;
+}
+header a{
+    padding: 0px 18px;
+}
+.manage{
+  line-height:30px;
+}
+footer{
+    width: auto;
+    height: 30px;
+    background: #afeeee;
+    font-family: "Times New Roman";
+    font-style: italic;
+    font-size: 10px;
+    clear:both;
+}
+footer h1{
+    margin: 0px 10px;
+    float: right;
+}
+footer a{
+  padding:15px;
+}
+footer span{
+    font-family: serif;
+}
+.slider-box{
+    background-color: azure;
+    padding: 10px 100px 10px 50px;
+    border-radius: 30px;
+    border: 5px solid #afeeee;
+}
+main h1{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.slider img {
+    width:100%;/*スライダー内の画像を横幅100%に*/
+    height:auto;
+}
+
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider .slick-slide {
+    margin:0 10px;/*スライド左右の余白調整*/
+}
+.slide-in {
+  overflow: hidden;
+    display: inline-block;
+}
+
+.slide-in_inner {
+  display: inline-block;
+
+}
+
+/*左右のアニメーション*/
+.leftAnime{
+    opacity: 0;/*事前に透過0にして消しておく*/
+
+}
+
+.slideAnimeLeftRight {
+  animation-name:slideTextX100;
+  animation-duration:0.8s;
+  animation-fill-mode:forwards;
+    opacity: 0;
+    
+}
+
+@keyframes slideTextX100 {
+  from {
+  transform: translateX(-100%); /*要素を左の枠外に移動*/
+        opacity: 0;
+  }
+
+  to {
+  transform: translateX(0);/*要素を元の位置に移動*/
+    opacity: 1;
+  }
+}
+
+.slideAnimeRightLeft {
+  animation-name:slideTextX-100;
+  animation-duration:0.8s;
+  animation-fill-mode:forwards;
+    opacity: 0;
+
+}
+
+
+@keyframes slideTextX-100 {
+  from {
+  transform: translateX(100%);/*要素を右の枠外に移動*/
+    opacity: 0;
+  }
+
+  to {
+  transform: translateX(0);/*要素を元の位置に移動*/
+    opacity: 1;
+  }
+}
+.blur{
+  animation-name:blurAnime;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+}
+
+@keyframes blurAnime{
+  from {
+  filter: blur(10px);
+  transform: scale(1.02);
+  opacity: 0;
+  }
+
+  to {
+  filter: blur(0);
+  transform: scale(1);
+  opacity: 1;
+  }
+}
+ 
+.blurTrigger{
+    opacity: 0;
+}
+.blurTrigger2{
+    opacity: 0;
+}
+.blurTrigger3{
+    opacity: 0;
+}
+.sc-top h1{
+    text-align: center;
+    font-size: 35px;
+    font-family: monospace;
+}
+.top{
+    margin: 10px 30px;
+    line-height: 50px
+}
+.below{
+    text-align: center;
+}
+.bve5 img{
+    width: 40%;
+    height: auto;
+    float: right;
+    
+}
+.bve5{
+    background-image: url(878980.jpg);
+    margin: 0;
+    
+    display: block;
+    font-size: x-large;
+}
