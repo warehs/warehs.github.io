@@ -118,11 +118,31 @@
     </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+
 <script>
-// 1. まず明細入力欄を生成する関数を定義
+// --- 設定：Firebaseからコピーした内容に書き換えてください ---
+const firebaseConfig = {
+    apiKey: "AIzaSyB3hLSnuaXeRDhvyjX5Ojj3BuKjyiahcj8",
+    authDomain: "expense-dd6ff.firebaseapp.com",
+  databaseURL: "https://expense-dd6ff-default-rtdb.firebaseio.com",
+    projectId: "expense-dd6ff",
+    storageBucket: "expense-dd6ff.firebasestorage.app",
+    messagingSenderId: "263502098390",
+    appId: "1:263502098390:web:32d9b6ca69be1b391f3e77"
+};
+// -------------------------------------------------------
+
+// Firebaseの初期化
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const dbRef = database.ref('kakeibo_data');
+
+// --- 既存の関数（initDetailInputs, formatNumber, getNum）はそのまま ---
 function initDetailInputs() {
     const container = document.getElementById('view-details-container');
-    container.innerHTML = ""; // 初期化
+    container.innerHTML = "";
     for (let i = 0; i < 30; i++) {
         const input = document.createElement('input');
         input.type = 'text';
@@ -140,7 +160,8 @@ function getNum(val) {
     return parseFloat(val.replace(/,/g, "")) || 0;
 }
 
-function update() {
+// 共通の計算処理
+function calculate() {
     let viewSum = 0;
     document.querySelectorAll('.view-detail-item').forEach(el => viewSum += getNum(el.value));
     document.getElementById('curr-view').value = viewSum > 0 ? viewSum.toLocaleString() : "";
@@ -168,31 +189,36 @@ function update() {
     const diffEl = document.getElementById('diff-result');
     diffEl.innerText = (diff >= 0 ? "有利差異: +" : "不利差異: ") + diff.toLocaleString();
     diffEl.className = (diff >= 0 ? 'diff-plus' : 'diff-minus') + " value-large";
+}
 
-    autoSave();
+// サーバー（Firebase）への保存
+let saveTimeout;
+function autoSave() {
+    clearTimeout(saveTimeout);
+    // 入力のたびに通信すると重いので、入力停止から500ms後に保存
+    saveTimeout = setTimeout(() => {
+        const data = {};
+        document.querySelectorAll('.val-input').forEach(el => {
+            if(el.id) data[el.id] = el.value;
+        });
+        const now = new Date();
+        const timeStr = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+        
+        dbRef.set({ values: data, timestamp: timeStr });
+        document.getElementById('update-time').innerText = timeStr + " (保存完了)";
+    }, 500);
 }
 
 function resetAll() {
-    if(confirm("全ての入力を消去しますか？")) {
-        document.querySelectorAll('.val-input').forEach(el => el.value = "");
-        localStorage.removeItem('kakeibo_final_data');
-        update();
-        document.getElementById('update-time').innerText = "リセット済み";
+    if(confirm("全ての入力を消去し、サーバーから削除しますか？")) {
+        dbRef.remove().then(() => {
+            document.querySelectorAll('.val-input').forEach(el => el.value = "");
+            calculate();
+            document.getElementById('update-time').innerText = "リセット済み";
+        });
     }
 }
 
-function autoSave() {
-    const data = {};
-    document.querySelectorAll('.val-input').forEach(el => {
-        if(el.id) data[el.id] = el.value;
-    });
-    const now = new Date();
-    const timeStr = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-    localStorage.setItem('kakeibo_final_data', JSON.stringify({ values: data, timestamp: timeStr }));
-    document.getElementById('update-time').innerText = timeStr;
-}
-
-// イベント設定を一括で行う
 function setupEventListeners() {
     document.addEventListener('input', function(e) {
         if (e.target.classList.contains('val-input')) {
@@ -201,29 +227,30 @@ function setupEventListeners() {
             e.target.value = formatNumber(e.target.value);
             let newLen = e.target.value.length;
             e.target.setSelectionRange(cursor + (newLen - oldLen), cursor + (newLen - oldLen));
-            update();
+            calculate();
+            autoSave(); // 計算のたびに保存
         }
     });
 }
 
-// 2. ページ読み込み時の処理の順番を厳密にする
 window.onload = function() {
-    initDetailInputs(); // 1. 明細欄を作る
-    setupEventListeners(); // 2. イベントを貼る
+    initDetailInputs();
+    setupEventListeners();
 
-    const saved = localStorage.getItem('kakeibo_final_data');
-    if (saved) {
-        const obj = JSON.parse(saved);
-        const data = obj.values;
-        for (let id in data) {
-            const el = document.getElementById(id);
-            if (el) el.value = data[id];
+    // ページ読み込み時にサーバーからデータを取得
+    dbRef.once('value', (snapshot) => {
+        const obj = snapshot.val();
+        if (obj && obj.values) {
+            const data = obj.values;
+            for (let id in data) {
+                const el = document.getElementById(id);
+                if (el) el.value = data[id];
+            }
+            document.getElementById('update-time').innerText = obj.timestamp || "-";
+            calculate();
         }
-        document.getElementById('update-time').innerText = obj.timestamp || "-";
-    }
-    update(); // 3. 最後に計算を走らせる
+    });
 };
 </script>
-
 </body>
 </html>
