@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>条文暗記プラットフォーム</title>
+    <style>
+        :root { --sidebar-width: 250px; --primary-blue: #409EFF; }
+        body { display: flex; margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; height: 100vh; background: #f0f2f5; }
+        
+        /* サイドバー */
+        #sidebar { width: var(--sidebar-width); background: #303133; color: white; overflow-y: auto; padding: 20px 0; }
+        #sidebar h2 { font-size: 1rem; padding: 0 20px; color: #909399; }
+        .menu-item { padding: 12px 20px; cursor: pointer; transition: 0.2s; border-left: 4px solid transparent; font-size: 0.9rem; }
+        .menu-item:hover { background: #4a4a4a; }
+        .menu-item.active { background: #1f1f1f; border-left-color: var(--primary-blue); color: var(--primary-blue); }
+
+        /* メインコンテンツ */
+        #main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: white; }
+        #header { padding: 15px 30px; border-bottom: 1px solid #dcdfe6; display: flex; justify-content: space-between; align-items: center; }
+        #display-area { flex: 1; overflow-y: auto; padding: 40px 60px; line-height: 2.2; font-size: 1.1rem; color: #303133; }
+
+        /* 条文の階層デザイン */
+        h3 { border-bottom: 2px solid var(--primary-blue); padding-bottom: 5px; margin-top: 30px; } /* １． */
+        h4 { margin-top: 20px; color: #606266; } /* （１） */
+        .indent-1 { margin-left: 1.5em; margin-bottom: 5px; } /* ① */
+        .indent-2 { margin-left: 3.0em; margin-bottom: 5px; color: #666; } /* イ */
+
+        /* 暗記マスク */
+        .mask { background: #333; color: #333; cursor: pointer; border-radius: 3px; padding: 0 4px; transition: 0.2s; border: 1px solid #333; }
+        .mask:hover { background: #555; }
+        .mask.reveal { background: #fffbe6; color: #d48806; border: 1px solid #ffe58f; }
+        
+        button { background: var(--primary-blue); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>条文リスト</h2>
+    <div id="menu-container"></div>
+</div>
+
+<div id="main-content">
+    <div id="header">
+        <h1 id="current-title" style="margin:0; font-size:1.2rem;">条文を選択してください</h1>
+        <div>
+            <span id="save-status" style="font-size:0.8rem; color:#909399; margin-right:10px;"></span>
+            <button onclick="saveCurrentData()">保存</button>
+        </div>
+    </div>
+    <div id="display-area" onmouseup="handleSelection()">
+        </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+
+<script>
+// --- Firebase設定（自分のものに書き換えてください） ---
+const firebaseConfig = {
+  apiKey: "AIzaSyBuU0l8CzxvUJshPljuAq5LLI8mCGG0f2g",
+  authDomain: "warehs.firebaseapp.com",
+  databaseURL: "https://warehs-default-rtdb.firebaseio.com",
+  projectId: "warehs",
+  storageBucket: "warehs.firebasestorage.app",
+  messagingSenderId: "351013737525",
+  appId: "1:351013737525:web:af00783211e57ec5b18d7c",
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// --- 条文ファイルリスト（dataフォルダ内のファイル名を並べる） ---
+const dataList = [
+    { id: "tax_01", title: "第1条：課税の対象", file: "data/tax01.txt" },
+    { id: "tax_02", title: "第2条：定義", file: "data/tax02.txt" }
+];
+
+let currentFileId = "";
+
+// サイドバーメニューの生成
+const menuContainer = document.getElementById('menu-container');
+dataList.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'menu-item';
+    div.innerText = item.title;
+    div.onclick = () => loadJoubun(item);
+    menuContainer.appendChild(div);
+});
+
+// テキストファイルを読み込んでHTMLに変換
+async function loadJoubun(item) {
+    currentFileId = item.id;
+    document.getElementById('current-title').innerText = item.title;
+    
+    // メニューの選択状態を更新
+    document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    // まずFirebaseに保存済みデータがあるか確認
+    const snapshot = await db.ref('anki_sheets/' + currentFileId).once('value');
+    const savedData = snapshot.val();
+
+    if (savedData) {
+        renderHTML(savedData.html);
+    } else {
+        // 保存がなければtxtファイルを読み込み
+        try {
+            const response = await fetch(item.file);
+            const text = await response.text();
+            const html = parseTextToHTML(text);
+            renderHTML(html);
+        } catch (e) {
+            document.getElementById('display-area').innerHTML = "ファイルの読み込みに失敗しました。サーバーに data/ フォルダと txt があるか確認してください。";
+        }
+    }
+}
+
+// テキストを階層化するロジック
+function parseTextToHTML(text) {
+    return text.split('\n').map(line => {
+        line = line.trim();
+        if (!line) return "";
+        if (/^[０-９\d]．/.test(line)) return `<h3>${line}</h3>`;
+        if (/^\([０-９\d]\)/.test(line)) return `<h4>${line}</h4>`;
+        if (/^[①-⑳]/.test(line)) return `<p class="indent-1">${line}</p>`;
+        if (/^[ア-ンイ]/.test(line)) return `<p class="indent-2">${line}</p>`;
+        return `<p>${line}</p>`;
+    }).join('');
+}
+
+function renderHTML(html) {
+    const area = document.getElementById('display-area');
+    area.innerHTML = html;
+    // マスクにクリックイベントを再付与
+    area.querySelectorAll('.mask').forEach(el => {
+        el.onclick = function() { this.classList.toggle('reveal'); };
+    });
+}
+
+// 範囲選択してマスクをかける
+function handleSelection() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount || sel.toString().length === 0) return;
+    
+    const range = sel.getRangeAt(0);
+    const span = document.createElement('span');
+    span.className = 'mask';
+    span.textContent = sel.toString();
+    span.onclick = function() { this.classList.toggle('reveal'); };
+    
+    range.deleteContents();
+    range.insertNode(span);
+    sel.removeAllRanges();
+}
+
+// Firebaseに保存
+function saveCurrentData() {
+    if (!currentFileId) return;
+    const html = document.getElementById('display-area').innerHTML;
+    db.ref('anki_sheets/' + currentFileId).set({ html: html }).then(() => {
+        const status = document.getElementById('save-status');
+        status.innerText = "保存完了！";
+        setTimeout(() => status.innerText = "", 2000);
+    });
+}
+</script>
+</body>
+</html>
