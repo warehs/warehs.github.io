@@ -61,106 +61,85 @@
         }
         
         /* 条文エリア：行間を狭く、両端揃え */
-        #display-area { 
-            flex: 1; 
-            overflow-y: auto; 
-            padding: 30px 60px; 
-            line-height: 1.5; /* ギチギチすぎず、詰まった印象 */
-            font-size: 1.05rem; 
-            text-align: justify;
-        }
+    /* 中略（変数の定義などはそのまま） */
 
-        /* --- 几帳面な字下げ（ぶら下がりインデント）のCSS --- */
-        
-        /* 全体的な段落設定 */
-#display-area p, #display-area h3, #display-area h4 {
-    padding-left: 1.5em; /* 全体を右にずらす */
-    text-indent: -1.5em; /* 1行目だけ左に戻す */
-}
+    /* メインコンテンツの基本設定 */
+    #display-area { 
+        flex: 1; 
+        overflow-y: auto; 
+        padding: 20px 40px; 
+        line-height: 1.25; /* 官報に近い、かなり狭い行間 */
+        font-size: 1.05rem; 
+        text-align: justify;
+    }
 
-        /* １．（大見出し） */
-        h3 { 
-            font-size: 1.15rem; 
-            margin-top: 15px !important; 
-            margin-bottom: 5px !important; 
-            border-bottom: 1px solid #333;
-            padding-bottom: 2px;
-        } 
-        
-        /* （１）（中見出し） */
-        h4 { 
-            font-size: 1.05rem; 
-            margin-top: 10px !important; 
-            color: #444;
-        }
-        
-        /* ①（インデント1） */
-        .indent-1 { 
-            padding-left: 3.0em !important; /* 1.5 + 1.5 */
-            text-indent: -1.5em !important;
-        } 
-        
-        /* イ（インデント2） */
-        .indent-2 { 
-            padding-left: 4.5em !important; /* 1.5 + 1.5 + 1.5 */
-            text-indent: -1.5em !important;
-            color: #555;
-        }
+    /* --- 究極の几帳面インデント（2行目以降を揃える） --- */
+    #display-area p, #display-area h3, #display-area h4 {
+        margin: 0; /* 段落間の隙間をゼロに */
+        padding: 0;
+        position: relative;
+    }
 
-        /* --- 暗記マスク・ボタンのCSS --- */
-        
-        .mask { 
-            background: #000; 
-            color: #000; 
-            cursor: pointer; 
-            padding: 0 1px;
-            transition: none;
-            position: relative;
-        }
-        .mask:hover { opacity: 0.8; }
-        .mask.reveal { 
-            background: transparent; 
-            color: #d44; /* 正解は赤字 */
-            font-weight: bold;
-        }
-        
-        /* 一部消去用の×ボタン */
-        .remove-btn {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: rgba(255,0,0,0.7);
-            color: white;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            font-size: 10px;
-            line-height: 16px;
-            text-align: center;
-            display: none; /* 通常は非表示 */
-            cursor: pointer;
-            font-family: sans-serif;
-            font-weight: bold;
-        }
-        .mask:hover .remove-btn { display: block; } /* ホバー時だけ表示 */
+    /* １．（大見出し）*/
+    h3 { 
+        font-size: 1.1rem; 
+        padding-left: 2.0em !important; 
+        text-indent: -2.0em !important;
+        margin-top: 10px !important;
+        border-bottom: 1px solid #000;
+    }
 
-        button { 
-            background: #fff; 
-            color: #333; 
-            border: 1px solid #ccc; 
-            padding: 5px 12px; 
-            cursor: pointer; 
-            font-family: serif; 
-            font-size: 0.85rem;
-            border-radius: 3px;
-            transition: 0.2s;
-        }
-        button:hover { background: #f0f0f0; border-color: #999; }
-        button.btn-primary { background: #444; color: #fff; border-color: #000; }
-        button.btn-primary:hover { background: #222; }
-        button.btn-danger { color: #d44; border-color: #d44; }
-        button.btn-danger:hover { background: #fff1f1; }
-    </style>
+    /* （１）（中見出し）*/
+    h4 { 
+        font-size: 1.05rem;
+        padding-left: 2.5em !important; 
+        text-indent: -2.5em !important;
+    }
+
+    /* ①（インデント1）*/
+    .indent-1 { 
+        padding-left: 4.0em !important; 
+        text-indent: -1.5em !important;
+    }
+
+    /* イ（インデント2）*/
+    .indent-2 { 
+        padding-left: 5.5em !important; 
+        text-indent: -1.5em !important;
+    }
+
+    /* --- 消去ボタンとマスクの調整 --- */
+    .mask { 
+        background: #000; 
+        color: #000; 
+        cursor: pointer; 
+        padding: 0;
+        display: inline; /* 文字に密着させる */
+        border-bottom: 1px solid #000;
+    }
+    .mask.reveal { 
+        background: transparent; 
+        color: #d44; 
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    /* マスクを削除する×ボタンのサイズ調整 */
+    .remove-btn {
+        position: absolute;
+        top: -8px;
+        background: #f00;
+        color: #fff;
+        font-size: 9px;
+        padding: 0 3px;
+        border-radius: 3px;
+        z-index: 10;
+        display: none;
+    }
+    .mask:hover .remove-btn { display: inline-block; }
+
+    button { font-family: serif; font-size: 0.8rem; padding: 3px 10px; }
+</style>
 </head>
 <body>
 
@@ -363,6 +342,23 @@ function saveCurrentData() {
         status.innerText = "保存完了！";
         setTimeout(() => status.innerText = "", 2000);
     });
+}
+
+    function parseTextToHTML(text) {
+    return text.split('\n').map(line => {
+        line = line.trim();
+        if (!line) return "";
+
+        // 判定ロジック
+        if (/^[０-９\d]．/.test(line)) return `<h3>${line}</h3>`;
+        if (/^\([０-９\d]\)/.test(line)) return `<h4>${line}</h4>`;
+        
+        // ① や イ の前に全角スペースを入れて「記号の幅」を調整する場合の処理
+        if (/^[①-⑳]/.test(line)) return `<p class="indent-1">${line}</p>`;
+        if (/^[ア-ンイ]/.test(line)) return `<p class="indent-2">${line}</p>`;
+        
+        return `<p>${line}</p>`;
+    }).join('');
 }
 </script>
 </body>
