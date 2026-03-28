@@ -3,118 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <title>条文暗記プラットフォーム</title>
-<style>
-    :root { 
-        --sidebar-width: 220px; 
-        --primary-blue: #2c3e50; /* 少し落ち着いた色に */
-        --text-color: #1a1a1a;
-    }
-    
-    body { 
-        display: flex; 
-        margin: 0; 
-        /* 明朝体指定：Windows/Mac/iOSそれぞれの標準明朝体 */
-        font-family: "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "MS P明朝", "MS Mincho", "serif"; 
-        height: 100vh; 
-        background: #fff; 
-        color: var(--text-color);
-    }
-    
-    /* サイドバー */
-    #sidebar { 
-        width: var(--sidebar-width); 
-        background: #f8f9fa; 
-        border-right: 1px solid #dcdfe6; 
-        overflow-y: auto; 
-    }
-    #sidebar h2 { 
-        font-size: 0.85rem; 
-        padding: 15px 20px; 
-        margin: 0;
-        background: #eee;
-        color: #666; 
-    }
-    .menu-item { 
-        padding: 8px 20px; 
-        cursor: pointer; 
-        font-size: 0.85rem; 
-        border-bottom: 1px solid #eee;
-        line-height: 1.3; /* タブの行間も狭く */
-    }
-    .menu-item:hover { background: #f0f0f0; }
-    .menu-item.active { background: #eef2f7; color: #000; font-weight: bold; border-left: 4px solid var(--primary-blue); }
+    <style>
+        :root { 
+            --sidebar-width: 220px; 
+            --primary-blue: #2c3e50; 
+            --text-color: #1a1a1a;
+            --bg-color: #f4f7f6;
+        }
+        
+        body { 
+            display: flex; 
+            margin: 0; 
+            font-family: "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "MS P明朝", "MS Mincho", "serif"; 
+            height: 100vh; 
+            background: var(--bg-color); 
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        
+        /* サイドバー */
+        #sidebar { 
+            width: var(--sidebar-width); 
+            background: #fff; 
+            border-right: 1px solid #dcdfe6; 
+            overflow-y: auto; 
+            display: flex;
+            flex-direction: column;
+        }
+        #sidebar h2 { 
+            font-size: 0.85rem; 
+            padding: 15px 20px; 
+            margin: 0;
+            background: #eee;
+            color: #666; 
+        }
+        #menu-container { flex: 1; overflow-y: auto; }
+        .menu-item { 
+            padding: 10px 20px; 
+            cursor: pointer; 
+            font-size: 0.85rem; 
+            border-bottom: 1px solid #eee;
+            line-height: 1.3;
+            transition: 0.2s;
+        }
+        .menu-item:hover { background: #f9f9f9; }
+        .menu-item.active { background: #eef2f7; color: #000; font-weight: bold; border-left: 4px solid var(--primary-blue); }
 
-    /* メインコンテンツ */
-    #main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-    #header { 
-        padding: 10px 30px; 
-        border-bottom: 1px solid #eee; 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center;
-        background: #fafafa;
-    }
-    
-    /* 条文エリア：行間をかなり狭く設定 */
-    #display-area { 
-        flex: 1; 
-        overflow-y: auto; 
-        padding: 20px 50px; 
-        line-height: 1.4; /* ギュッと詰まった行間 */
-        font-size: 1.05rem; 
-        text-align: justify; /* 両端揃えで几帳面に */
-    }
+        /* メインコンテンツ */
+        #main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #fff; }
+        #header { 
+            padding: 10px 30px; 
+            border-bottom: 1px solid #eee; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            background: #fafafa;
+        }
+        
+        /* 条文エリア：行間を狭く、両端揃え */
+        #display-area { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 30px 60px; 
+            line-height: 1.5; /* ギチギチすぎず、詰まった印象 */
+            font-size: 1.05rem; 
+            text-align: justify;
+        }
 
-    /* 階層デザイン */
-    h3 { font-size: 1.2rem; margin: 15px 0 5px 0; border-bottom: 1px solid #333; } /* １． */
-    h4 { font-size: 1.05rem; margin: 10px 0 3px 0; } /* （１） */
-    p { margin: 2px 0; } /* 段落間の余白も最小限に */
-    
-    .indent-1 { margin-left: 1.2em; } /* ① */
-    .indent-2 { margin-left: 2.4em; } /* イ */
+        /* --- 几帳面な字下げ（ぶら下がりインデント）のCSS --- */
+        
+        /* 全体的な段落設定 */
+        #display-area p, #display-area h3, #display-area h4 {
+            margin: 3px 0; /* 行間を詰める */
+            padding-left: 1.5em; /* 基本の字下げ幅 */
+            text-indent: -1.5em; /* 1行目だけ左に 戻す */
+        }
 
-    /* 暗記マスク */
-    .mask { 
-        background: #000; 
-        color: #000; 
-        cursor: pointer; 
-        padding: 0 1px;
-        transition: none; /* 几帳面さを出すためアニメーション無効 */
-    }
-    .mask:hover { opacity: 0.8; }
-    .mask.reveal { 
-        background: transparent; 
-        color: #d44; /* 覚えるべき箇所を赤字に */
-        font-weight: bold;
-    }
-    
-    button { background: #444; color: white; border: 1px solid #000; padding: 5px 12px; cursor: pointer; font-family: serif; }
-</style>
+        /* １．（大見出し） */
+        h3 { 
+            font-size: 1.15rem; 
+            margin-top: 15px !important; 
+            margin-bottom: 5px !important; 
+            border-bottom: 1px solid #333;
+            padding-bottom: 2px;
+        } 
+        
+        /* （１）（中見出し） */
+        h4 { 
+            font-size: 1.05rem; 
+            margin-top: 10px !important; 
+            color: #444;
+        }
+        
+        /* ①（インデント1） */
+        .indent-1 { 
+            padding-left: 3.0em !important; /* 1.5 + 1.5 */
+            text-indent: -1.5em !important;
+        } 
+        
+        /* イ（インデント2） */
+        .indent-2 { 
+            padding-left: 4.5em !important; /* 1.5 + 1.5 + 1.5 */
+            text-indent: -1.5em !important;
+            color: #555;
+        }
+
+        /* --- 暗記マスク・ボタンのCSS --- */
+        
+        .mask { 
+            background: #000; 
+            color: #000; 
+            cursor: pointer; 
+            padding: 0 1px;
+            transition: none;
+            position: relative;
+        }
+        .mask:hover { opacity: 0.8; }
+        .mask.reveal { 
+            background: transparent; 
+            color: #d44; /* 正解は赤字 */
+            font-weight: bold;
+        }
+        
+        /* 一部消去用の×ボタン */
+        .remove-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: rgba(255,0,0,0.7);
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            line-height: 16px;
+            text-align: center;
+            display: none; /* 通常は非表示 */
+            cursor: pointer;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        .mask:hover .remove-btn { display: block; } /* ホバー時だけ表示 */
+
+        button { 
+            background: #fff; 
+            color: #333; 
+            border: 1px solid #ccc; 
+            padding: 5px 12px; 
+            cursor: pointer; 
+            font-family: serif; 
+            font-size: 0.85rem;
+            border-radius: 3px;
+            transition: 0.2s;
+        }
+        button:hover { background: #f0f0f0; border-color: #999; }
+        button.btn-primary { background: #444; color: #fff; border-color: #000; }
+        button.btn-primary:hover { background: #222; }
+        button.btn-danger { color: #d44; border-color: #d44; }
+        button.btn-danger:hover { background: #fff1f1; }
+    </style>
 </head>
 <body>
 
 <div id="sidebar">
     <h2>条文リスト</h2>
     <div id="menu-container"></div>
+    <div style="padding: 10px; border-top: 1px solid #eee; background: #fafafa;">
+        <button class="btn-danger" style="width:100%" onclick="resetCurrentSheet()">この条文の暗記を全消し</button>
+    </div>
 </div>
 
 <div id="main-content">
     <div id="header">
-        <h1 id="current-title" style="margin:0; font-size:1.2rem;">条文を選択してください</h1>
+        <h1 id="current-title" style="margin:0; font-size:1.1rem;">条文を選択</h1>
         <div>
             <span id="save-status" style="font-size:0.8rem; color:#909399; margin-right:10px;"></span>
-            <button onclick="saveCurrentData()">保存</button>
+            <button class="btn-primary" onclick="saveCurrentData()">保存</button>
         </div>
     </div>
     <div id="display-area" onmouseup="handleSelection()">
-        </div>
+        <div style="text-align:center; color:#999; margin-top:50px;">左のリストから条文を選択してください。<br>dataフォルダにtxtファイルが必要です。</div>
+    </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
 
 <script>
-// --- Firebase設定（自分のものに書き換えてください） ---
+// --- Firebase設定（必ず自分のものに書き換えてください） ---
 const firebaseConfig = {
   apiKey: "AIzaSyBuU0l8CzxvUJshPljuAq5LLI8mCGG0f2g",
   authDomain: "warehs.firebaseapp.com",
@@ -127,13 +203,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// --- 条文ファイルリスト（dataフォルダ内のファイル名を並べる） ---
+// --- 条文ファイルリスト（dataフォルダ内のファイル名と合わせる） ---
 const dataList = [
     { id: "tax_01", title: "第1条：課税の対象", file: "data/tax01.txt" },
     { id: "tax_02", title: "第2条：定義", file: "data/tax02.txt" }
 ];
 
 let currentFileId = "";
+let originalHtmlBackup = ""; // 全消し用のバックアップ
 
 // サイドバーメニューの生成
 const menuContainer = document.getElementById('menu-container');
@@ -145,70 +222,137 @@ dataList.forEach(item => {
     menuContainer.appendChild(div);
 });
 
-// テキストファイルを読み込んでHTMLに変換
+// 条文を読み込む
 async function loadJoubun(item) {
     currentFileId = item.id;
     document.getElementById('current-title').innerText = item.title;
     
-    // メニューの選択状態を更新
     document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
     event.currentTarget.classList.add('active');
 
-    // まずFirebaseに保存済みデータがあるか確認
+    // 1. まずtxtファイルを読み込んで、まっさらなHTMLを作る（全消し用）
+    try {
+        const response = await fetch(item.file);
+        const text = await response.text();
+        originalHtmlBackup = parseTextToHTML(text); // バックアップとして保存
+    } catch (e) {
+        document.getElementById('display-area').innerHTML = "ファイルの読み込みに失敗。 data/ フォルダを確認してください。";
+        return;
+    }
+
+    // 2. Firebaseに保存済みデータがあればそれを表示、なければまっさらなHTMLを表示
     const snapshot = await db.ref('anki_sheets/' + currentFileId).once('value');
     const savedData = snapshot.val();
 
     if (savedData) {
         renderHTML(savedData.html);
     } else {
-        // 保存がなければtxtファイルを読み込み
-        try {
-            const response = await fetch(item.file);
-            const text = await response.text();
-            const html = parseTextToHTML(text);
-            renderHTML(html);
-        } catch (e) {
-            document.getElementById('display-area').innerHTML = "ファイルの読み込みに失敗しました。サーバーに data/ フォルダと txt があるか確認してください。";
-        }
+        renderHTML(originalHtmlBackup);
     }
 }
 
-// テキストを階層化するロジック
+// テキストを階層化HTMLに変換（字下げ用のクラスを付与）
 function parseTextToHTML(text) {
     return text.split('\n').map(line => {
         line = line.trim();
         if (!line) return "";
+        // 階層に応じてタグとクラスを使い分け
         if (/^[０-９\d]．/.test(line)) return `<h3>${line}</h3>`;
         if (/^\([０-９\d]\)/.test(line)) return `<h4>${line}</h4>`;
         if (/^[①-⑳]/.test(line)) return `<p class="indent-1">${line}</p>`;
         if (/^[ア-ンイ]/.test(line)) return `<p class="indent-2">${line}</p>`;
-        return `<p>${line}</p>`;
+        return `<p>${line}</p>`; // その他は通常の段落
     }).join('');
 }
 
+// HTMLを画面に描画し、マスクにイベントを付与
 function renderHTML(html) {
     const area = document.getElementById('display-area');
     area.innerHTML = html;
-    // マスクにクリックイベントを再付与
+    
+    // 全てのマスク（.mask）にイベントを再設定
     area.querySelectorAll('.mask').forEach(el => {
-        el.onclick = function() { this.classList.toggle('reveal'); };
+        // A. クリックで表示/非表示切り替え
+        el.onclick = function(e) {
+            // ×ボタン（.remove-btn）がクリックされた場合は何もしない
+            if (e.target.classList.contains('remove-btn')) return;
+            this.classList.toggle('reveal');
+        };
+        
+        // B. 一部消去用の×ボタンを作成して追加
+        const removeBtn = document.createElement('span');
+        removeBtn.className = 'remove-btn';
+        removeBtn.innerText = '×';
+        removeBtn.onclick = function(e) {
+            e.stopPropagation(); // 親（.mask）のクリックイベントを発動させない
+            removeSingleMask(el);
+        };
+        el.appendChild(removeBtn);
     });
 }
 
-// 範囲選択してマスクをかける
+// マウス選択でマスクをかける
 function handleSelection() {
     const sel = window.getSelection();
     if (!sel.rangeCount || sel.toString().length === 0) return;
     
     const range = sel.getRangeAt(0);
+    
+    // 几帳面ポイント：選択範囲が段落（p, h3, h4）をまたいでいる場合はマスクしない（崩れ防止）
+    if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+        alert("段落をまたいだ選択はできません。几帳面に行ごとに選択してください。");
+        sel.removeAllRanges();
+        return;
+    }
+
     const span = document.createElement('span');
     span.className = 'mask';
     span.textContent = sel.toString();
-    span.onclick = function() { this.classList.toggle('reveal'); };
+    
+    // 新しく作ったマスクにもイベントを付与
+    span.onclick = function(e) {
+        if (e.target.classList.contains('remove-btn')) return;
+        this.classList.toggle('reveal');
+    };
+    
+    const removeBtn = document.createElement('span');
+    removeBtn.className = 'remove-btn';
+    removeBtn.innerText = '×';
+    removeBtn.onclick = function(e) {
+        e.stopPropagation();
+        removeSingleMask(span);
+    };
+    span.appendChild(removeBtn);
     
     range.deleteContents();
     range.insertNode(span);
     sel.removeAllRanges();
+}
+
+// --- 新機能：消去系の関数 ---
+
+// 1. 一部消去：指定したマスクを元のテキストに戻す
+function removeSingleMask(maskEl) {
+    // ×ボタンを除外したテキストを取得
+    const text = maskEl.firstChild.textContent; 
+    const textNode = document.createTextNode(text);
+    // マスク要素をテキストノードに置き換える
+    maskEl.parentNode.replaceChild(textNode, maskEl);
+}
+
+// 2. 全消し：この条文の暗記データをリセット
+function resetCurrentSheet() {
+    if (!currentFileId) return;
+    if (confirm("この条文の暗記（黒塗り）をすべて消去して、最初からやり直しますか？（サーバー上のデータも上書きされます）")) {
+        // バックアップしておいた「まっさらなHTML」を表示
+        renderHTML(originalHtmlBackup);
+        // Firebaseにも空のデータを保存（上書き）
+        db.ref('anki_sheets/' + currentFileId).set({ html: originalHtmlBackup }).then(() => {
+            const status = document.getElementById('save-status');
+            status.innerText = "リセット完了";
+            setTimeout(() => status.innerText = "", 2000);
+        });
+    }
 }
 
 // Firebaseに保存
