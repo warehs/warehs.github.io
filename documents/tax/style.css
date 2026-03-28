@@ -1,4 +1,0 @@
-#display-area p, #display-area h3, #display-area h4 {
-    padding-left: 1.5em; /* 全体を右にずらす */
-    text-indent: -1.5em; /* 1行目だけ左に戻す */
-}
