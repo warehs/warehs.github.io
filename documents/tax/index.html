@@ -31,119 +31,52 @@
             flex-direction: column;
         }
         #sidebar h2 { 
-            font-size: 0.85rem; 
-            padding: 15px 20px; 
-            margin: 0;
-            background: #eee;
-            color: #666; 
+            font-size: 0.85rem; padding: 15px 20px; margin: 0;
+            background: #eee; color: #666; 
         }
         #menu-container { flex: 1; overflow-y: auto; }
-.menu-item { 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 0.85rem; 
-    border-bottom: 1px solid #eee;
-    line-height: 1.3;
-    
-    /* --- 1行に収めて ... にする設定 --- */
-    white-space: nowrap;       /* 改行させない */
-    overflow: hidden;          /* はみ出た部分を隠す */
-    text-overflow: ellipsis;   /* はみ出た末尾を ... にする */
-}
+        .menu-item { 
+            padding: 10px 20px; cursor: pointer; font-size: 0.85rem; border-bottom: 1px solid #eee; line-height: 1.3;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
         .menu-item:hover { background: #f9f9f9; }
         .menu-item.active { background: #eef2f7; color: #000; font-weight: bold; border-left: 4px solid var(--primary-blue); }
 
         /* メインコンテンツ */
         #main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #fff; }
         #header { 
-            padding: 10px 30px; 
-            border-bottom: 1px solid #eee; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            background: #fafafa;
+            padding: 10px 30px; border-bottom: 1px solid #eee; display: flex; 
+            justify-content: space-between; align-items: center; background: #fafafa;
         }
         
-        /* 条文エリア：行間を狭く、両端揃え */
-    /* 中略（変数の定義などはそのまま） */
+        #display-area { 
+            flex: 1; overflow-y: auto; padding: 20px 40px; 
+            line-height: 1.25; font-size: 1.05rem; text-align: justify;
+        }
 
-    /* メインコンテンツの基本設定 */
-    #display-area { 
-        flex: 1; 
-        overflow-y: auto; 
-        padding: 20px 40px; 
-        line-height: 1.4; /* 官報に近い、かなり狭い行間 */
-        font-size: 1.05rem; 
-        text-align: justify;
-    }
+        /* 究極の几帳面インデント */
+        #display-area p, #display-area h3, #display-area h4 { margin: 0; padding: 0; position: relative; }
+        h3 { 
+            font-size: 1.1rem; padding-left: 2.0em !important; text-indent: -2.0em !important;
+            margin-top: 10px !important; border-bottom: 1px solid #000;
+        }
+        h4 { font-size: 1.05rem; padding-left: 2.5em !important; text-indent: -2.5em !important; }
+        .indent-1 { padding-left: 4.0em !important; text-indent: -1.5em !important; }
+        .indent-2 { padding-left: 5.5em !important; text-indent: -1.5em !important; }
 
-    /* --- 究極の几帳面インデント（2行目以降を揃える） --- */
-    #display-area p, #display-area h3, #display-area h4 {
-        margin: 0; /* 段落間の隙間をゼロに */
-        padding: 0;
-        position: relative;
-    }
+        /* マスク設定 */
+        .mask { background: #000; color: #000; cursor: pointer; padding: 0; display: inline; border-bottom: 1px solid #000; position: relative; }
+        .mask.reveal { background: transparent; color: #d44; font-weight: bold; border-bottom: 1px solid #ddd; }
+        .remove-btn {
+            position: absolute; top: -8px; background: #f00; color: #fff; font-size: 9px;
+            padding: 0 3px; border-radius: 3px; z-index: 10; display: none;
+        }
+        .mask:hover .remove-btn { display: inline-block; }
 
-    /* １．（大見出し）*/
-    h3 { 
-        font-size: 1.1rem; 
-        padding-left: 2.0em !important; 
-        text-indent: -2.0em !important;
-        margin-top: 10px !important;
-        border-bottom: 1px solid #000;
-    }
-
-    /* （１）（中見出し）*/
-    h4 { 
-        font-size: 1.05rem;
-        padding-left: 2.5em !important; 
-        text-indent: -2.5em !important;
-    }
-
-    /* ①（インデント1）*/
-    .indent-1 { 
-        padding-left: 4.0em !important; 
-        text-indent: -1.5em !important;
-    }
-
-    /* イ（インデント2）*/
-    .indent-2 { 
-        padding-left: 5.5em !important; 
-        text-indent: -1.5em !important;
-    }
-
-    /* --- 消去ボタンとマスクの調整 --- */
-    .mask { 
-        background: #000; 
-        color: #000; 
-        cursor: pointer; 
-        padding: 0;
-        display: inline; /* 文字に密着させる */
-        border-bottom: 1px solid #000;
-    }
-    .mask.reveal { 
-        background: transparent; 
-        color: #d44; 
-        font-weight: bold;
-        border-bottom: 1px solid #ddd;
-    }
-    
-    /* マスクを削除する×ボタンのサイズ調整 */
-    .remove-btn {
-        position: absolute;
-        top: -8px;
-        background: #f00;
-        color: #fff;
-        font-size: 9px;
-        padding: 0 3px;
-        border-radius: 3px;
-        z-index: 10;
-        display: none;
-    }
-    .mask:hover .remove-btn { display: inline-block; }
-
-    button { font-family: serif; font-size: 0.8rem; padding: 3px 10px; }
-</style>
+        button { font-family: serif; font-size: 0.8rem; padding: 3px 10px; cursor: pointer; }
+        .btn-primary { background: var(--primary-blue); color: #fff; border: none; }
+        .btn-danger { background: #fff; color: #d44; border: 1px solid #d44; }
+    </style>
 </head>
 <body>
 
@@ -156,16 +89,16 @@
 </div>
 
 <div id="main-content">
-<div id="header">
-    <h1 id="current-title" style="margin:0; font-size:1.1rem; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:60%;">条文を選択</h1>
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <span id="update-time" style="font-size:0.75rem; color:#909399; font-family:sans-serif;"></span>
-        <span id="save-status" style="font-size:0.8rem; color:#67C23A; font-weight:bold;"></span>
-        <button class="btn-primary" onclick="saveCurrentData()">保存</button>
+    <div id="header">
+        <h1 id="current-title" style="margin:0; font-size:1.1rem; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:50%;">条文を選択</h1>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span id="update-time" style="font-size:0.75rem; color:#909399;"></span>
+            <span id="save-status" style="font-size:0.8rem; color:#67C23A; font-weight:bold;"></span>
+            <button class="btn-primary" onclick="saveCurrentData()">保存</button>
+        </div>
     </div>
-</div>
     <div id="display-area" onmouseup="handleSelection()">
-        <div style="text-align:center; color:#999; margin-top:50px;">左のリストから条文を選択してください。<br>dataフォルダにtxtファイルが必要です。</div>
+        <div style="text-align:center; color:#999; margin-top:50px;">左から条文を選択してください。</div>
     </div>
 </div>
 
@@ -173,7 +106,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
 
 <script>
-// --- Firebase設定（必ず自分のものに書き換えてください） ---
+// --- Firebase設定 ---
 const firebaseConfig = {
   apiKey: "AIzaSyBuU0l8CzxvUJshPljuAq5LLI8mCGG0f2g",
   authDomain: "warehs.firebaseapp.com",
@@ -186,280 +119,182 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// --- 条文ファイルリスト（dataフォルダ内のファイル名と合わせる） ---
 const dataList = [
-{ id: "tax_01", title: "1-1：課税の対象", file: "data/1-1.txt" },
-{ id: "tax_02", title: "1-2：国内取引の判定", file: "data/1-2.txt" },
-{ id: "tax_03", title: "1-3：非課税", file: "data/1-3.txt" },
-{ id: "tax_04", title: "1-4：輸出免税等", file: "data/1-4.txt" },
-{ id: "tax_05", title: "1-5：輸出物品販売場における免税", file: "data/1-5.txt" },
-{ id: "tax_06", title: "2-1：納税義務者及び小規模事業者に係る納税義務の免除", file: "data/2-1.txt" },
-{ id: "tax_07", title: "2-2：課税事業者の選択", file: "data/2-2.txt" },
-{ id: "tax_08", title: "2-3：特定期間における課税売上高による納税義務の免除の特例", file: "data/2-3.txt" },
-{ id: "tax_09", title: "2-4：相続があった場合の納税義務の免除の特例", file: "data/2-4.txt" },
-{ id: "tax_10", title: "2-5：合併があった場合の納税義務の免除の特例", file: "data/2-5.txt" },
-{ id: "tax_11", title: "2-6：分割があった場合の納税義務の免除の特例(分割等)", file: "data/2-6.txt" },
-{ id: "tax_12", title: "2-7：分割があった場合の納税義務の免除の特例(吸収分割)", file: "data/2-7.txt" },
-{ id: "tax_13", title: "2-8：新設法人の納税義務の免除の特例", file: "data/2-8.txt" },
-{ id: "tax_14", title: "2-9：特定新規設立法人の納税義務の免除の特例", file: "data/2-9.txt" },
-{ id: "tax_15", title: "2-10：高額特定資産を取得した場合の納税義務の免除の特例", file: "data/2-10.txt" },
-{ id: "tax_16", title: "2-11：実質享受者課税等", file: "data/2-11.txt" },
-{ id: "tax_17", title: "2-12：法人課税信託の受託者に関する消費税法の適用", file: "data/2-12.txt" },
-{ id: "tax_18", title: "2-13：特定プラットフォーム事業者を介して行う電気通信利用役務の提供", file: "data/2-13.txt" },
-{ id: "tax_19", title: "3-1：工事請負にかかる資産の譲渡等の時期の特例", file: "data/3-1.txt" },
-{ id: "tax_20", title: "3-2：小規模事業者に係る資産の譲渡等の時期の特例", file: "data/3-2.txt" },
-{ id: "tax_21", title: "4-1：課税期間", file: "data/4-1.txt" },
-{ id: "tax_22", title: "5-1：納税地", file: "data/5-1.txt" },
-{ id: "tax_23", title: "6-1：課税標準及び税率", file: "data/6-1.txt" },
-{ id: "tax_24", title: "6-2：軽減対象課税資産の譲渡等の範囲等", file: "data/6-2.txt" },
-{ id: "tax_25", title: "7-1：仕入れにかかる消費税額の控除", file: "data/7-1.txt" },
-{ id: "tax_26", title: "7-2：帳簿及び請求書等の保存要件", file: "data/7-2.txt" },
-{ id: "tax_27", title: "7-3：課税売上割合の計算方法", file: "data/7-3.txt" },
-{ id: "tax_28", title: "7-4：非課税資産の輸出等を行なった場合の仕入れに係る消費税額の控除の特例", file: "data/7-4.txt" },
-{ id: "tax_29", title: "7-5：仕入れに係る対価の返還等を受けた場合の仕入れに係る消費税額の特例", file: "data/7-5.txt" },
-{ id: "tax_30", title: "7-6：課税貨物につき還付を受ける場合の仕入れに係る消費税額の控除の特例", file: "data/7-6.txt" },
-{ id: "tax_31", title: "7-7：風売上割合が著しく変動した場合の調整対象固定資産", file: "data/7-7.txt" },
-{ id: "tax_32", title: "7-8：調整対象固定資産を転用した場合の仕入れに係る消費税額の調整", file: "data/7-8.txt" },
-{ id: "tax_33", title: "7-9：居住用賃貸建物を課税賃貸用に今日した場合等の仕入れに係る消費税額の調整", file: "data/7-9.txt" },
-{ id: "tax_34", title: "7-10：納税義務の免除を受けないこととなった場合等の棚卸資産に係る調整", file: "data/7-10.txt" },
-{ id: "tax_35", title: "7-11：中小事業者の仕入れに係る消費税額の控除の特例（簡易課税制度）", file: "data/7-11.txt" },
-{ id: "tax_36", title: "7-12：災害等があった場合の中小事業者の仕入れに係る消費税額の控除の特例", file: "data/7-12.txt" },
-{ id: "tax_37", title: "7-13：売上に係る対価の返還等をした場合の消費税額の控除", file: "data/7-13.txt" },
-{ id: "tax_38", title: "7-14：特定課税仕入れに係る対価の返還等を受けた場合の消費税額の控除", file: "data/7-14.txt" },
-{ id: "tax_39", title: "7-15：貸倒れにかかる消費税額の控除及び加算", file: "data/7-15.txt" },
-{ id: "tax_40", title: "8-1：課税資産の譲渡等及び特定課税仕入れについての中間申告及び納付", file: "data/8-1.txt" },
-{ id: "tax_41", title: "8-2：課税資産の譲渡等及び特定課税仕入れについての確定申告及び納付", file: "data/8-2.txt" },
-{ id: "tax_42", title: "8-3：還付請求申告及び還付", file: "data/8-3.txt" },
-{ id: "tax_43", title: "8-4：電子情報処理組織による申告の特例", file: "data/8-4.txt" },
-{ id: "tax_44", title: "8-5：引取りにかかる課税貨物についての申告及び納付", file: "data/8-5.txt" },
-{ id: "tax_45", title: "8-6：更生の請求", file: "data/8-6.txt" },
-{ id: "tax_46", title: "9-1：納税義務の免除が適用されなくなった場合等の届出", file: "data/9-1.txt" },
-{ id: "tax_47", title: "9-2：国・地方公共団体等に対する特例", file: "data/9-2.txt" },
-{ id: "tax_48", title: "9-3：特定資産の譲渡等を行う事業者の義務", file: "data/9-3.txt" },
-{ id: "tax_49", title: "9-4：価格の表示", file: "data/9-4.txt" },
-{ id: "tax_50", title: "9-5：租税特別措置法における免税", file: "data/9-5.txt" },
-{ id: "tax_51", title: "9-6：定義", file: "data/9-6.txt" },
-{ id: "tax_52", title: "9-7：適格請求書発行事業者の登録に関する経過措置等", file: "data/9-7.txt" },
-{ id: "tax_53", title: "9-8：適格請求書発行事業者の登録等", file: "data/9-8.txt" },
-{ id: "tax_54", title: "9-9：適格請求書発行事業者の義務等", file: "data/9-9.txt" },
-{ id: "tax_55", title: "9-10：適格請求書発行事業者となる小規模事業者に係る税額控除に関する経過措置（2割特例）", file: "data/9-10.txt" },
+    { id: "tax_01", title: "1-1：課税の対象", file: "data/1-1.txt" },
+    { id: "tax_02", title: "1-2：国内取引の判定", file: "data/1-2.txt" },
+    { id: "tax_03", title: "1-3：非課税", file: "data/1-3.txt" },
+    { id: "tax_04", title: "1-4：輸出免税等", file: "data/1-4.txt" },
+    { id: "tax_05", title: "1-5：輸出物品販売場における免税", file: "data/1-5.txt" },
+    { id: "tax_06", title: "2-1：納税義務者及び小規模事業者に係る納税義務の免除", file: "data/2-1.txt" },
+    { id: "tax_07", title: "2-2：課税事業者の選択", file: "data/2-2.txt" },
+    { id: "tax_08", title: "2-3：特定期間における課税売上高による納税義務の免除の特例", file: "data/2-3.txt" },
+    { id: "tax_09", title: "2-4：相続があった場合の納税義務の免除の特例", file: "data/2-4.txt" },
+    { id: "tax_10", title: "2-5：合併があった場合の納税義務の免除の特例", file: "data/2-5.txt" },
+    { id: "tax_11", title: "2-6：分割があった場合の納税義務の免除の特例(分割等)", file: "data/2-6.txt" },
+    { id: "tax_12", title: "2-7：分割があった場合の納税義務の免除の特例(吸収分割)", file: "data/2-7.txt" },
+    { id: "tax_13", title: "2-8：新設法人の納税義務の免除の特例", file: "data/2-8.txt" },
+    { id: "tax_14", title: "2-9：特定新規設立法人の納税義務の免除の特例", file: "data/2-9.txt" },
+    { id: "tax_15", title: "2-10：高額特定資産を取得した場合の納税義務の免除の特例", file: "data/2-10.txt" },
+    { id: "tax_16", title: "2-11：実質享受者課税等", file: "data/2-11.txt" },
+    { id: "tax_17", title: "2-12：法人課税信託の受託者に関する消費税法の適用", file: "data/2-12.txt" },
+    { id: "tax_18", title: "2-13：特定プラットフォーム事業者を介して行う電気通信利用役務の提供", file: "data/2-13.txt" },
+    { id: "tax_19", title: "3-1：工事請負にかかる資産の譲渡等の時期の特例", file: "data/3-1.txt" },
+    { id: "tax_20", title: "3-2：小規模事業者に係る資産の譲渡等の時期の特例", file: "data/3-2.txt" },
+    { id: "tax_21", title: "4-1：課税期間", file: "data/4-1.txt" },
+    { id: "tax_22", title: "5-1：納税地", file: "data/5-1.txt" },
+    { id: "tax_23", title: "6-1：課税標準及び税率", file: "data/6-1.txt" },
+    { id: "tax_24", title: "6-2：軽減対象課税資産の譲渡等の範囲等", file: "data/6-2.txt" },
+    { id: "tax_25", title: "7-1：仕入れにかかる消費税額の控除", file: "data/7-1.txt" },
+    { id: "tax_26", title: "7-2：帳簿及び請求書等の保存要件", file: "data/7-2.txt" },
+    { id: "tax_27", title: "7-3：課税売上割合の計算方法", file: "data/7-3.txt" },
+    { id: "tax_28", title: "7-4：非課税資産の輸出等を行なった場合の仕入れに係る消費税額の控除の特例", file: "data/7-4.txt" },
+    { id: "tax_29", title: "7-5：仕入れに係る対価の返還等を受けた場合の仕入れに係る消費税額の特例", file: "data/7-5.txt" },
+    { id: "tax_30", title: "7-6：課税貨物につき還付を受ける場合の仕入れに係る消費税額の控除の特例", file: "data/7-6.txt" },
+    { id: "tax_31", title: "7-7：風売上割合が著しく変動した場合の調整対象固定資産", file: "data/7-7.txt" },
+    { id: "tax_32", title: "7-8：調整対象固定資産を転用した場合の仕入れに係る消費税額の調整", file: "data/7-8.txt" },
+    { id: "tax_33", title: "7-9：居住用賃貸建物を課税賃貸用に今日した場合等の仕入れに係る消費税額の調整", file: "data/7-9.txt" },
+    { id: "tax_34", title: "7-10：納税義務の免除を受けないこととなった場合等の棚卸資産に係る調整", file: "data/7-10.txt" },
+    { id: "tax_35", title: "7-11：中小事業者の仕入れに係る消費税額の控除の特例（簡易課税制度）", file: "data/7-11.txt" },
+    { id: "tax_36", title: "7-12：災害等があった場合の中小事業者の仕入れに係る消費税額の控除の特例", file: "data/7-12.txt" },
+    { id: "tax_37", title: "7-13：売上に係る対価の返還等をした場合の消費税額の控除", file: "data/7-13.txt" },
+    { id: "tax_38", title: "7-14：特定課税仕入れに係る対価の返還等を受けた場合の消費税額の控除", file: "data/7-14.txt" },
+    { id: "tax_39", title: "7-15：貸倒れにかかる消費税額の控除及び加算", file: "data/7-15.txt" },
+    { id: "tax_40", title: "8-1：課税資産の譲渡等及び特定課税仕入れについての中間申告及び納付", file: "data/8-1.txt" },
+    { id: "tax_41", title: "8-2：課税資産の譲渡等及び特定課税仕入れについての確定申告及び納付", file: "data/8-2.txt" },
+    { id: "tax_42", title: "8-3：還付請求申告及び還付", file: "data/8-3.txt" },
+    { id: "tax_43", title: "8-4：電子情報処理組織による申告の特例", file: "data/8-4.txt" },
+    { id: "tax_44", title: "8-5：引取りにかかる課税貨物についての申告及び納付", file: "data/8-5.txt" },
+    { id: "tax_45", title: "8-6：更生の請求", file: "data/8-6.txt" },
+    { id: "tax_46", title: "9-1：納税義務の免除が適用されなくなった場合等の届出", file: "data/9-1.txt" },
+    { id: "tax_47", title: "9-2：国・地方公共団体等に対する特例", file: "data/9-2.txt" },
+    { id: "tax_48", title: "9-3：特定資産の譲渡等を行う事業者の義務", file: "data/9-3.txt" },
+    { id: "tax_49", title: "9-4：価格の表示", file: "data/9-4.txt" },
+    { id: "tax_50", title: "9-5：租税特別措置法における免税", file: "data/9-5.txt" },
+    { id: "tax_51", title: "9-6：定義", file: "data/9-6.txt" },
+    { id: "tax_52", title: "9-7：適格請求書発行事業者の登録に関する経過措置等", file: "data/9-7.txt" },
+    { id: "tax_53", title: "9-8：適格請求書発行事業者の登録等", file: "data/9-8.txt" },
+    { id: "tax_54", title: "9-9：適格請求書発行事業者の義務等", file: "data/9-9.txt" },
+    { id: "tax_55", title: "9-10：適格請求書発行事業者となる小規模事業者に係る税額控除に関する経過措置（2割特例）", file: "data/9-10.txt" }
 ];
 
 let currentFileId = "";
-let originalHtmlBackup = ""; // 全消し用のバックアップ
+let originalHtmlBackup = "";
 
-// サイドバーメニューの生成
-// サイドバーメニューの生成部分
+// 1. メニュー生成
 const menuContainer = document.getElementById('menu-container');
 dataList.forEach(item => {
     const div = document.createElement('div');
     div.className = 'menu-item';
-    // タイトルをセット
     div.innerText = item.title;
-    
-    // ここの書き方を変更（itemを直接渡す）
-    div.addEventListener('click', function(e) {
-        loadJoubun(item);
-    });
-    
+    div.addEventListener('click', () => loadJoubun(item));
     menuContainer.appendChild(div);
 });
 
-
-// 条文を読み込む
+// 2. 条文読み込み
 async function loadJoubun(item) {
     currentFileId = item.id;
     document.getElementById('current-title').innerText = item.title;
     
-    document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    // アクティブ表示の切り替え
+    document.querySelectorAll('.menu-item').forEach(el => {
+        el.classList.toggle('active', el.innerText === item.title);
+    });
 
-    // 1. まずtxtファイルを読み込んで、まっさらなHTMLを作る（全消し用）
     try {
         const response = await fetch(item.file);
         const text = await response.text();
-        originalHtmlBackup = parseTextToHTML(text); // バックアップとして保存
+        originalHtmlBackup = parseTextToHTML(text);
+
+        const snapshot = await db.ref('anki_sheets/' + currentFileId).once('value');
+        const savedData = snapshot.val();
+
+        if (savedData) {
+            renderHTML(savedData.html);
+            document.getElementById('update-time').innerText = savedData.timestamp ? "最終保存: " + savedData.timestamp : "";
+        } else {
+            renderHTML(originalHtmlBackup);
+            document.getElementById('update-time').innerText = "未保存";
+        }
     } catch (e) {
-        document.getElementById('display-area').innerHTML = "ファイルの読み込みに失敗。 data/ フォルダを確認してください。";
-        return;
-    }
-
-    // 2. Firebaseに保存済みデータがあればそれを表示、なければまっさらなHTMLを表示
-    const snapshot = await db.ref('anki_sheets/' + currentFileId).once('value');
-    const savedData = snapshot.val();
-
-    if (savedData) {
-        renderHTML(savedData.html);
-    } else {
-        renderHTML(originalHtmlBackup);
+        document.getElementById('display-area').innerHTML = "エラー: data/" + item.id + ".txt が見つかりません。";
     }
 }
 
-// テキストを階層化HTMLに変換（字下げ用のクラスを付与）
+// 3. テキスト変換
 function parseTextToHTML(text) {
     return text.split('\n').map(line => {
         line = line.trim();
         if (!line) return "";
-        // 階層に応じてタグとクラスを使い分け
         if (/^[０-９\d]．/.test(line)) return `<h3>${line}</h3>`;
         if (/^\([０-９\d]\)/.test(line)) return `<h4>${line}</h4>`;
         if (/^[①-⑳]/.test(line)) return `<p class="indent-1">${line}</p>`;
         if (/^[ア-ンイ]/.test(line)) return `<p class="indent-2">${line}</p>`;
-        return `<p>${line}</p>`; // その他は通常の段落
+        return `<p>${line}</p>`;
     }).join('');
 }
 
-// HTMLを画面に描画し、マスクにイベントを付与
+// 4. 描画とマスク処理
 function renderHTML(html) {
     const area = document.getElementById('display-area');
     area.innerHTML = html;
-    
-    // 全てのマスク（.mask）にイベントを再設定
-    area.querySelectorAll('.mask').forEach(el => {
-        // A. クリックで表示/非表示切り替え
-        el.onclick = function(e) {
-            // ×ボタン（.remove-btn）がクリックされた場合は何もしない
-            if (e.target.classList.contains('remove-btn')) return;
-            this.classList.toggle('reveal');
-        };
-        
-        // B. 一部消去用の×ボタンを作成して追加
-        const removeBtn = document.createElement('span');
-        removeBtn.className = 'remove-btn';
-        removeBtn.innerText = '×';
-        removeBtn.onclick = function(e) {
-            e.stopPropagation(); // 親（.mask）のクリックイベントを発動させない
-            removeSingleMask(el);
-        };
-        el.appendChild(removeBtn);
-    });
+    area.querySelectorAll('.mask').forEach(setupMaskEvents);
 }
 
-// マウス選択でマスクをかける
-function handleSelection() {
-    const sel = window.getSelection();
-    if (!sel.rangeCount || sel.toString().length === 0) return;
-    
-    const range = sel.getRangeAt(0);
-    
-    // 几帳面ポイント：選択範囲が段落（p, h3, h4）をまたいでいる場合はマスクしない（崩れ防止）
-    if (range.startContainer.parentElement !== range.endContainer.parentElement) {
-        alert("段落をまたいだ選択はできません。几帳面に行ごとに選択してください。");
-        sel.removeAllRanges();
-        return;
-    }
-
-    const span = document.createElement('span');
-    span.className = 'mask';
-    span.textContent = sel.toString();
-    
-    // 新しく作ったマスクにもイベントを付与
-    span.onclick = function(e) {
+function setupMaskEvents(el) {
+    el.onclick = function(e) {
         if (e.target.classList.contains('remove-btn')) return;
         this.classList.toggle('reveal');
     };
-    
-    const removeBtn = document.createElement('span');
-    removeBtn.className = 'remove-btn';
-    removeBtn.innerText = '×';
-    removeBtn.onclick = function(e) {
-        e.stopPropagation();
-        removeSingleMask(span);
-    };
-    span.appendChild(removeBtn);
-    
+    if (!el.querySelector('.remove-btn')) {
+        const btn = document.createElement('span');
+        btn.className = 'remove-btn';
+        btn.innerText = '×';
+        btn.onclick = (e) => { e.stopPropagation(); removeSingleMask(el); };
+        el.appendChild(btn);
+    }
+}
+
+function handleSelection() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount || sel.toString().length === 0) return;
+    const range = sel.getRangeAt(0);
+    if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+        alert("段落をまたいだ選択はできません。");
+        return;
+    }
+    const span = document.createElement('span');
+    span.className = 'mask';
+    span.textContent = sel.toString();
+    setupMaskEvents(span);
     range.deleteContents();
     range.insertNode(span);
     sel.removeAllRanges();
 }
 
-// --- 新機能：消去系の関数 ---
-
-// 1. 一部消去：指定したマスクを元のテキストに戻す
 function removeSingleMask(maskEl) {
-    // ×ボタンを除外したテキストを取得
-    const text = maskEl.firstChild.textContent; 
-    const textNode = document.createTextNode(text);
-    // マスク要素をテキストノードに置き換える
-    maskEl.parentNode.replaceChild(textNode, maskEl);
+    const text = maskEl.firstChild.textContent;
+    maskEl.parentNode.replaceChild(document.createTextNode(text), maskEl);
 }
 
-// 2. 全消し：この条文の暗記データをリセット
-function resetCurrentSheet() {
-    if (!currentFileId) return;
-    if (confirm("この条文の暗記（黒塗り）をすべて消去して、最初からやり直しますか？（サーバー上のデータも上書きされます）")) {
-        // バックアップしておいた「まっさらなHTML」を表示
-        renderHTML(originalHtmlBackup);
-        // Firebaseにも空のデータを保存（上書き）
-        db.ref('anki_sheets/' + currentFileId).set({ html: originalHtmlBackup }).then(() => {
-            const status = document.getElementById('save-status');
-            status.innerText = "リセット完了";
-            setTimeout(() => status.innerText = "", 2000);
-        });
-    }
-}
-
-// Firebaseに保存
+// 5. 保存・リセット
 function saveCurrentData() {
     if (!currentFileId) return;
-    const html = document.getElementById('display-area').innerHTML;
-    db.ref('anki_sheets/' + currentFileId).set({ html: html }).then(() => {
-        const status = document.getElementById('save-status');
-        status.innerText = "保存完了！";
-        setTimeout(() => status.innerText = "", 2000);
-    });
-}
-
-    function parseTextToHTML(text) {
-    return text.split('\n').map(line => {
-        line = line.trim();
-        if (!line) return "";
-
-        // 判定ロジック
-        if (/^[０-９\d]．/.test(line)) return `<h3>${line}</h3>`;
-        if (/^\([０-９\d]\)/.test(line)) return `<h4>${line}</h4>`;
-        
-        // ① や イ の前に全角スペースを入れて「記号の幅」を調整する場合の処理
-        if (/^[①-⑳]/.test(line)) return `<p class="indent-1">${line}</p>`;
-        if (/^[ア-ンイ]/.test(line)) return `<p class="indent-2">${line}</p>`;
-        
-        return `<p>${line}</p>`;
-    }).join('');
-}
-    // 保存ボタンを押した時の処理
-function saveCurrentData() {
-    if (!currentFileId) return;
-    
     const now = new Date();
     const timeStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
-    
     const html = document.getElementById('display-area').innerHTML;
-    
-    db.ref('anki_sheets/' + currentFileId).set({ 
-        html: html, 
-        timestamp: timeStr  // 時刻も一緒に保存
-    }).then(() => {
+    db.ref('anki_sheets/' + currentFileId).set({ html: html, timestamp: timeStr }).then(() => {
         document.getElementById('update-time').innerText = "最終保存: " + timeStr;
-        const status = document.getElementById('save-status');
-        status.innerText = "✓";
-        setTimeout(() => status.innerText = "", 2000);
+        document.getElementById('save-status').innerText = "✓";
+        setTimeout(() => document.getElementById('save-status').innerText = "", 2000);
     });
 }
 
-// 条文を読み込む時の処理（一部抜粋）
-async function loadJoubun(item) {
-    // ...中略...
-    const snapshot = await db.ref('anki_sheets/' + currentFileId).once('value');
-    const savedData = snapshot.val();
-
-    if (savedData) {
-        renderHTML(savedData.html);
-        // 保存されていた日時を表示
-        document.getElementById('update-time').innerText = savedData.timestamp ? "最終保存: " + savedData.timestamp : "";
-    } else {
-        renderHTML(originalHtmlBackup);
+function resetCurrentSheet() {
+    if (!currentFileId || !confirm("リセットしますか？")) return;
+    renderHTML(originalHtmlBackup);
+    db.ref('anki_sheets/' + currentFileId).remove().then(() => {
         document.getElementById('update-time').innerText = "未保存";
-    }
+    });
 }
 </script>
 </body>
