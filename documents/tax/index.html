@@ -53,16 +53,22 @@
             flex: 1; overflow-y: auto; padding: 20px 40px; 
             line-height: 1.25; font-size: 1.05rem; text-align: justify;
         }
+        #display-area p.body-text {
+    padding-left: 3.5em !important; /* 記号（１）の分だけさらに下げる */
+    text-indent: 0 !important;      /* 本文は1行目も2行目も揃える */
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
 
         /* 究極の几帳面インデント */
-        #display-area p, #display-area h3, #display-area h4 { margin: 0; padding: 0; position: relative; }
+        #display-area h3, #display-area h4 { margin: 0; padding: 0; position: relative; }
         h3 { 
             font-size: 1.1rem; padding-left: 2.0em !important; text-indent: -2.0em !important;
             margin-top: 10px !important; border-bottom: 1px solid #000;
         }
         h4 { font-size: 1.05rem; padding-left: 2.5em !important; text-indent: -2.5em !important; }
-        .indent-1 { padding-left: 4.0em !important; text-indent: -1.5em !important; }
-        .indent-2 { padding-left: 5.5em !important; text-indent: -1.5em !important; }
+.indent-1 { padding-left: 4.5em !important; text-indent: -1.5em !important; } /* ① */
+.indent-2 { padding-left: 6.0em !important; text-indent: -1.5em !important; } /* イ */
 
         /* マスク設定 */
         .mask { background: #000; color: #000; cursor: pointer; padding: 0; display: inline; border-bottom: 1px solid #000; position: relative; }
@@ -223,13 +229,26 @@ async function loadJoubun(item) {
 // 3. テキスト変換
 function parseTextToHTML(text) {
     return text.split('\n').map(line => {
-        line = line.trim();
-        if (!line) return "";
-        if (/^[０-９\d]．/.test(line)) return `<h3>${line}</h3>`;
-        if (/^\([０-９\d]\)/.test(line)) return `<h4>${line}</h4>`;
-        if (/^[①-⑳]/.test(line)) return `<p class="indent-1">${line}</p>`;
-        if (/^[ア-ンイ]/.test(line)) return `<p class="indent-2">${line}</p>`;
-        return `<p>${line}</p>`;
+        // line = line.trim(); // ← これを削除することで文頭のスペースを保持
+        
+        if (!line.trim()) return ""; // 空行は無視
+
+        const trimmed = line.trim();
+
+        // 1. 大見出し １．
+        if (/^[０-９\d]．/.test(trimmed)) return `<h3>${line}</h3>`;
+        
+        // 2. 中見出し (１)
+        if (/^\([０-９\d]\)/.test(trimmed)) return `<h4>${line}</h4>`;
+        
+        // 3. 小見出し ①
+        if (/^[①-⑳]/.test(trimmed)) return `<p class="indent-1">${line}</p>`;
+        
+        // 4. 細目 イ
+        if (/^[ア-ンイ]/.test(trimmed)) return `<p class="indent-2">${line}</p>`;
+        
+        // 5. それ以外（本文）はインデントを深くする
+        return `<p class="body-text">${line}</p>`;
     }).join('');
 }
 
