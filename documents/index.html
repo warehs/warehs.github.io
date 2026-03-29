@@ -11,7 +11,7 @@
     <script>
         async function buildSitemap() {
             try {
-                const response = await fetch('index.csv');
+                const response = await fetch('sitemap.csv?v=' + new Date().getTime());
                 if (!response.ok) throw new Error('CSVが見つかりません');
                 const csvText = await response.text();
                 
