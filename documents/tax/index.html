@@ -53,22 +53,26 @@
             flex: 1; overflow-y: auto; padding: 20px 40px; 
             line-height: 1.25; font-size: 1.05rem; text-align: justify;
         }
-        #display-area p.body-text {
-    padding-left: 3.5em !important; /* 記号（１）の分だけさらに下げる */
-    text-indent: 0 !important;      /* 本文は1行目も2行目も揃える */
-    margin-top: 2px;
-    margin-bottom: 8px;
+#display-area p.body-text {
+    padding-left: 3.0em !important; /* ← ここを号数のpaddingと合わせる */
+    text-indent: 0 !important;
+    margin: 2px 0 8px 0;
 }
 
         /* 究極の几帳面インデント */
         #display-area h3, #display-area h4 { margin: 0; padding: 0; position: relative; }
-        h3 { 
-            font-size: 1.1rem; padding-left: 2.0em !important; text-indent: -2.0em !important;
-            margin-top: 10px !important; border-bottom: 1px solid #000;
-        }
-        h4 { font-size: 1.05rem; padding-left: 2.5em !important; text-indent: -2.5em !important; }
-.indent-1 { padding-left: 4.5em !important; text-indent: -1.5em !important; } /* ① */
-.indent-2 { padding-left: 6.0em !important; text-indent: -1.5em !important; } /* イ */
+h3 { font-size: 1.1rem; padding-left: 1.5em !important; text-indent: -1.5em !important; margin-top: 15px !important; }
+h4 { font-size: 1.05rem; padding-left: 1.5em !important; text-indent: -1.5em !important; margin-top: 5px !important; }
+.indent-1 { 
+    padding-left: 3.0em !important; /* 本文と同じ 3.0em に設定 */
+    text-indent: -1.5em !important; /* 記号分だけ左に戻す */
+    margin: 2px 0;
+}
+.indent-2 { 
+    padding-left: 4.5em !important; /* さらに 1.5em 下げる */
+    text-indent: -1.5em !important;
+    margin: 2px 0;
+}
 
         /* マスク設定 */
         .mask { background: #000; color: #000; cursor: pointer; padding: 0; display: inline; border-bottom: 1px solid #000; position: relative; }
