@@ -1,143 +1,183 @@
-0,applications.html,applications.html
-0,"📁 dashboard",dashboard/
-1,404.html,dashboard/404.html
-1,"📁 de",dashboard/de/
-2,faq.html,dashboard/de/faq.html
-2,howto.html,dashboard/de/howto.html
-2,howto_platform_links.html,dashboard/de/howto_platform_links.html
-2,howto_shared_links.html,dashboard/de/howto_shared_links.html
-2,index.html,dashboard/de/index.html
-1,"📁 docs",dashboard/docs/
-2,access-phpmyadmin-remotely.html,dashboard/docs/access-phpmyadmin-remotely.html
-2,activate-use-xdebug.html,dashboard/docs/activate-use-xdebug.html
-2,auto-start-xampp.html,dashboard/docs/auto-start-xampp.html
-2,backup-restore-mysql.html,dashboard/docs/backup-restore-mysql.html
-2,change-mysql-temp-dir.html,dashboard/docs/change-mysql-temp-dir.html
-2,configure-use-tomcat.html,dashboard/docs/configure-use-tomcat.html
-2,configure-vhosts.html,dashboard/docs/configure-vhosts.html
-2,configure-wildcard-subdomains.html,dashboard/docs/configure-wildcard-subdomains.html
-2,create-framework-project-zf1.html,dashboard/docs/create-framework-project-zf1.html
-2,create-framework-project-zf2.html,dashboard/docs/create-framework-project-zf2.html
-2,deploy-git-app.html,dashboard/docs/deploy-git-app.html
-2,"📁 images",dashboard/docs/images/
-3,"📁 access-phpmyadmin-remotely",dashboard/docs/images/access-phpmyadmin-remotely/
-3,"📁 activate-use-xdebug",dashboard/docs/images/activate-use-xdebug/
-3,"📁 auto-start-xampp",dashboard/docs/images/auto-start-xampp/
-3,"📁 backup-restore-mysql",dashboard/docs/images/backup-restore-mysql/
-3,"📁 configure-use-tomcat",dashboard/docs/images/configure-use-tomcat/
-3,"📁 configure-vhosts",dashboard/docs/images/configure-vhosts/
-3,"📁 configure-wildcard-subdomains",dashboard/docs/images/configure-wildcard-subdomains/
-3,"📁 create-framework-project-zf1",dashboard/docs/images/create-framework-project-zf1/
-3,"📁 create-framework-project-zf2",dashboard/docs/images/create-framework-project-zf2/
-3,"📁 deploy-git-app",dashboard/docs/images/deploy-git-app/
-3,"📁 install-wordpress",dashboard/docs/images/install-wordpress/
-3,"📁 reset-mysql-password",dashboard/docs/images/reset-mysql-password/
-3,"📁 send-mail",dashboard/docs/images/send-mail/
-3,"📁 transfer-files-ftp",dashboard/docs/images/transfer-files-ftp/
-3,"📁 troubleshoot-apache",dashboard/docs/images/troubleshoot-apache/
-3,"📁 use-different-php-version",dashboard/docs/images/use-different-php-version/
-3,"📁 use-php-fcgi",dashboard/docs/images/use-php-fcgi/
-3,"📁 use-sqlite",dashboard/docs/images/use-sqlite/
-2,increase-php-file-upload-limit.html,dashboard/docs/increase-php-file-upload-limit.html
-2,reset-mysql-password.html,dashboard/docs/reset-mysql-password.html
-2,send-mail.html,dashboard/docs/send-mail.html
-2,transfer-files-ftp.html,dashboard/docs/transfer-files-ftp.html
-2,troubleshoot-apache.html,dashboard/docs/troubleshoot-apache.html
-2,use-different-php-version.html,dashboard/docs/use-different-php-version.html
-2,use-php-fcgi.html,dashboard/docs/use-php-fcgi.html
-2,use-sqlite.html,dashboard/docs/use-sqlite.html
-1,"📁 es",dashboard/es/
-2,faq.html,dashboard/es/faq.html
-2,howto.html,dashboard/es/howto.html
-2,howto_platform_links.html,dashboard/es/howto_platform_links.html
-2,howto_shared_links.html,dashboard/es/howto_shared_links.html
-2,index.html,dashboard/es/index.html
-1,faq.html,dashboard/faq.html
-1,"📁 fr",dashboard/fr/
-2,faq.html,dashboard/fr/faq.html
-2,howto.html,dashboard/fr/howto.html
-2,howto_platform_links.html,dashboard/fr/howto_platform_links.html
-2,howto_shared_links.html,dashboard/fr/howto_shared_links.html
-2,index.html,dashboard/fr/index.html
-1,howto.html,dashboard/howto.html
-1,howto_platform_links.html,dashboard/howto_platform_links.html
-1,howto_shared_links.html,dashboard/howto_shared_links.html
-1,"📁 hu",dashboard/hu/
-2,faq.html,dashboard/hu/faq.html
-2,howto.html,dashboard/hu/howto.html
-2,howto_platform_links.html,dashboard/hu/howto_platform_links.html
-2,howto_shared_links.html,dashboard/hu/howto_shared_links.html
-2,index.html,dashboard/hu/index.html
-1,"📁 images",dashboard/images/
-2,"📁 bitnami-xampp",dashboard/images/bitnami-xampp/
-2,"📁 blog",dashboard/images/blog/
-2,"📁 flags",dashboard/images/flags/
-2,"📁 screenshots",dashboard/images/screenshots/
-2,"📁 stamps",dashboard/images/stamps/
-2,"📁 team",dashboard/images/team/
-1,index.html,dashboard/index.html
-1,"📁 it",dashboard/it/
-2,faq.html,dashboard/it/faq.html
-2,howto.html,dashboard/it/howto.html
-2,howto_platform_links.html,dashboard/it/howto_platform_links.html
-2,howto_shared_links.html,dashboard/it/howto_shared_links.html
-2,index.html,dashboard/it/index.html
-1,"📁 javascripts",dashboard/javascripts/
-1,"📁 jp",dashboard/jp/
-2,faq.html,dashboard/jp/faq.html
-2,howto.html,dashboard/jp/howto.html
-2,howto_platform_links.html,dashboard/jp/howto_platform_links.html
-2,howto_shared_links.html,dashboard/jp/howto_shared_links.html
-2,index.html,dashboard/jp/index.html
-1,"📁 pl",dashboard/pl/
-2,faq.html,dashboard/pl/faq.html
-2,howto.html,dashboard/pl/howto.html
-2,howto_platform_links.html,dashboard/pl/howto_platform_links.html
-2,howto_shared_links.html,dashboard/pl/howto_shared_links.html
-2,index.html,dashboard/pl/index.html
-1,"📁 pt_br",dashboard/pt_br/
-2,faq.html,dashboard/pt_br/faq.html
-2,howto.html,dashboard/pt_br/howto.html
-2,howto_platform_links.html,dashboard/pt_br/howto_platform_links.html
-2,howto_shared_links.html,dashboard/pt_br/howto_shared_links.html
-2,index.html,dashboard/pt_br/index.html
-1,"📁 ro",dashboard/ro/
-2,faq.html,dashboard/ro/faq.html
-2,howto.html,dashboard/ro/howto.html
-2,howto_platform_links.html,dashboard/ro/howto_platform_links.html
-2,howto_shared_links.html,dashboard/ro/howto_shared_links.html
-2,index.html,dashboard/ro/index.html
-1,"📁 ru",dashboard/ru/
-2,faq.html,dashboard/ru/faq.html
-2,howto.html,dashboard/ru/howto.html
-2,howto_platform_links.html,dashboard/ru/howto_platform_links.html
-2,howto_shared_links.html,dashboard/ru/howto_shared_links.html
-2,index.html,dashboard/ru/index.html
-1,"📁 stylesheets",dashboard/stylesheets/
-1,"📁 tr",dashboard/tr/
-2,faq.html,dashboard/tr/faq.html
-2,howto.html,dashboard/tr/howto.html
-2,howto_platform_links.html,dashboard/tr/howto_platform_links.html
-2,howto_shared_links.html,dashboard/tr/howto_shared_links.html
-2,index.html,dashboard/tr/index.html
-1,"📁 ur",dashboard/ur/
-2,faq.html,dashboard/ur/faq.html
-2,howto.html,dashboard/ur/howto.html
-2,howto_platform_links.html,dashboard/ur/howto_platform_links.html
-2,howto_shared_links.html,dashboard/ur/howto_shared_links.html
-2,index.html,dashboard/ur/index.html
-1,"📁 zh_cn",dashboard/zh_cn/
-2,faq.html,dashboard/zh_cn/faq.html
-2,howto.html,dashboard/zh_cn/howto.html
-2,howto_platform_links.html,dashboard/zh_cn/howto_platform_links.html
-2,howto_shared_links.html,dashboard/zh_cn/howto_shared_links.html
-2,index.html,dashboard/zh_cn/index.html
-1,"📁 zh_tw",dashboard/zh_tw/
-2,faq.html,dashboard/zh_tw/faq.html
-2,howto.html,dashboard/zh_tw/howto.html
-2,howto_platform_links.html,dashboard/zh_tw/howto_platform_links.html
-2,howto_shared_links.html,dashboard/zh_tw/howto_shared_links.html
-2,index.html,dashboard/zh_tw/index.html
-0,"📁 img",img/
-0,"📁 webalizer",webalizer/
-0,"📁 xampp",xampp/
+0,expense.html,expense.html
+0,"📁 hinatazaka46",hinatazaka46/
+1,2022.04.05.html,hinatazaka46/2022.04.05.html
+1,2024.04.05.html,hinatazaka46/2024.04.05.html
+1,index.html,hinatazaka46/index.html
+0,index.html,index.html
+0,"📁 tax",tax/
+1,"📁 data",tax/data/
+2,1-1.txt,tax/data/1-1.txt
+2,1-2.txt,tax/data/1-2.txt
+2,1-3.txt,tax/data/1-3.txt
+2,1-4.txt,tax/data/1-4.txt
+2,1-5.txt,tax/data/1-5.txt
+2,2-1.txt,tax/data/2-1.txt
+2,2-10.txt,tax/data/2-10.txt
+2,2-11.txt,tax/data/2-11.txt
+2,2-13.txt,tax/data/2-13.txt
+2,2-2.txt,tax/data/2-2.txt
+2,2-3.txt,tax/data/2-3.txt
+2,2-4.txt,tax/data/2-4.txt
+2,2-5.txt,tax/data/2-5.txt
+2,2-6.txt,tax/data/2-6.txt
+2,2-7.txt,tax/data/2-7.txt
+2,2-8.txt,tax/data/2-8.txt
+2,2-9.txt,tax/data/2-9.txt
+2,4-1.txt,tax/data/4-1.txt
+2,6-1.txt,tax/data/6-1.txt
+2,6-2.txt,tax/data/6-2.txt
+2,7-1.txt,tax/data/7-1.txt
+2,7-10.txt,tax/data/7-10.txt
+2,7-11.txt,tax/data/7-11.txt
+2,7-12.txt,tax/data/7-12.txt
+2,7-13.txt,tax/data/7-13.txt
+2,7-14.txt,tax/data/7-14.txt
+2,7-15.txt,tax/data/7-15.txt
+2,7-2.txt,tax/data/7-2.txt
+2,7-3.txt,tax/data/7-3.txt
+2,7-4.txt,tax/data/7-4.txt
+2,7-5.txt,tax/data/7-5.txt
+2,7-6.txt,tax/data/7-6.txt
+2,7-7.txt,tax/data/7-7.txt
+2,7-8.txt,tax/data/7-8.txt
+2,8-1.txt,tax/data/8-1.txt
+2,8-2.txt,tax/data/8-2.txt
+2,8-3.txt,tax/data/8-3.txt
+2,8-4.txt,tax/data/8-4.txt
+2,8-5.txt,tax/data/8-5.txt
+2,8-6.txt,tax/data/8-6.txt
+2,9-1.txt,tax/data/9-1.txt
+2,9-10.txt,tax/data/9-10.txt
+2,9-2.txt,tax/data/9-2.txt
+2,9-3.txt,tax/data/9-3.txt
+2,9-4.txt,tax/data/9-4.txt
+2,9-5.txt,tax/data/9-5.txt
+2,9-6.txt,tax/data/9-6.txt
+2,9-7.txt,tax/data/9-7.txt
+2,9-8.txt,tax/data/9-8.txt
+2,9-9.txt,tax/data/9-9.txt
+1,index.html,tax/index.html
+0,"📁 try",try/
+1,"📁 kikootsuka",try/kikootsuka/
+1,"📁 riotakeda",try/riotakeda/
+2,chat.html,try/riotakeda/chat.html
+2,"📁 dailytry",try/riotakeda/dailytry/
+3,"📁 2025",try/riotakeda/dailytry/2025/
+4,"📁 01",try/riotakeda/dailytry/2025/01/
+5,06.html,try/riotakeda/dailytry/2025/01/06.html
+5,20.html,try/riotakeda/dailytry/2025/01/20.html
+4,"📁 02",try/riotakeda/dailytry/2025/02/
+5,17.html,try/riotakeda/dailytry/2025/02/17.html
+4,"📁 03",try/riotakeda/dailytry/2025/03/
+5,19.html,try/riotakeda/dailytry/2025/03/19.html
+4,"📁 04",try/riotakeda/dailytry/2025/04/
+5,11.html,try/riotakeda/dailytry/2025/04/11.html
+5,21.html,try/riotakeda/dailytry/2025/04/21.html
+4,"📁 05",try/riotakeda/dailytry/2025/05/
+5,26.html,try/riotakeda/dailytry/2025/05/26.html
+4,"📁 06",try/riotakeda/dailytry/2025/06/
+5,09.html,try/riotakeda/dailytry/2025/06/09.html
+5,19.html,try/riotakeda/dailytry/2025/06/19.html
+4,"📁 07",try/riotakeda/dailytry/2025/07/
+5,07.html,try/riotakeda/dailytry/2025/07/07.html
+5,25.html,try/riotakeda/dailytry/2025/07/25.html
+5,31.html,try/riotakeda/dailytry/2025/07/31.html
+4,"📁 08",try/riotakeda/dailytry/2025/08/
+5,16.html,try/riotakeda/dailytry/2025/08/16.html
+5,18.html,try/riotakeda/dailytry/2025/08/18.html
+5,30.html,try/riotakeda/dailytry/2025/08/30.html
+4,"📁 09",try/riotakeda/dailytry/2025/09/
+5,01.html,try/riotakeda/dailytry/2025/09/01.html
+5,10.html,try/riotakeda/dailytry/2025/09/10.html
+5,"📁 17",try/riotakeda/dailytry/2025/09/17/
+6,1.html,try/riotakeda/dailytry/2025/09/17/1.html
+6,2.html,try/riotakeda/dailytry/2025/09/17/2.html
+4,"📁 10",try/riotakeda/dailytry/2025/10/
+5,27.html,try/riotakeda/dailytry/2025/10/27.html
+4,"📁 11",try/riotakeda/dailytry/2025/11/
+5,07.html,try/riotakeda/dailytry/2025/11/07.html
+5,17.html,try/riotakeda/dailytry/2025/11/17.html
+5,25.html,try/riotakeda/dailytry/2025/11/25.html
+4,"📁 12",try/riotakeda/dailytry/2025/12/
+5,08.html,try/riotakeda/dailytry/2025/12/08.html
+5,12.html,try/riotakeda/dailytry/2025/12/12.html
+5,15.html,try/riotakeda/dailytry/2025/12/15.html
+5,22.html,try/riotakeda/dailytry/2025/12/22.html
+5,25.html,try/riotakeda/dailytry/2025/12/25.html
+5,29.html,try/riotakeda/dailytry/2025/12/29.html
+3,"📁 2026",try/riotakeda/dailytry/2026/
+4,"📁 01",try/riotakeda/dailytry/2026/01/
+5,"📁 05",try/riotakeda/dailytry/2026/01/05/
+6,1.html,try/riotakeda/dailytry/2026/01/05/1.html
+6,2.html,try/riotakeda/dailytry/2026/01/05/2.html
+5,07.html,try/riotakeda/dailytry/2026/01/07.html
+5,09.html,try/riotakeda/dailytry/2026/01/09.html
+5,15.html,try/riotakeda/dailytry/2026/01/15.html
+5,16.html,try/riotakeda/dailytry/2026/01/16.html
+5,19.html,try/riotakeda/dailytry/2026/01/19.html
+5,22.html,try/riotakeda/dailytry/2026/01/22.html
+5,23.html,try/riotakeda/dailytry/2026/01/23.html
+5,26.html,try/riotakeda/dailytry/2026/01/26.html
+5,28.html,try/riotakeda/dailytry/2026/01/28.html
+5,30.html,try/riotakeda/dailytry/2026/01/30.html
+4,"📁 02",try/riotakeda/dailytry/2026/02/
+5,02.html,try/riotakeda/dailytry/2026/02/02.html
+5,06.html,try/riotakeda/dailytry/2026/02/06.html
+5,09.html,try/riotakeda/dailytry/2026/02/09.html
+5,13.html,try/riotakeda/dailytry/2026/02/13.html
+5,"📁 16",try/riotakeda/dailytry/2026/02/16/
+6,1.html,try/riotakeda/dailytry/2026/02/16/1.html
+6,2.html,try/riotakeda/dailytry/2026/02/16/2.html
+3,"📁 nytraining",try/riotakeda/dailytry/nytraining/
+4,01.html,try/riotakeda/dailytry/nytraining/01.html
+4,02.html,try/riotakeda/dailytry/nytraining/02.html
+4,03.html,try/riotakeda/dailytry/nytraining/03.html
+4,04.html,try/riotakeda/dailytry/nytraining/04.html
+4,05.html,try/riotakeda/dailytry/nytraining/05.html
+4,06.html,try/riotakeda/dailytry/nytraining/06.html
+4,07.html,try/riotakeda/dailytry/nytraining/07.html
+4,08.html,try/riotakeda/dailytry/nytraining/08.html
+4,09.html,try/riotakeda/dailytry/nytraining/09.html
+4,10.html,try/riotakeda/dailytry/nytraining/10.html
+3,scores.html,try/riotakeda/dailytry/scores.html
+2,"📁 gemini",try/riotakeda/gemini/
+3,2026.01.01.17.28.html,try/riotakeda/gemini/2026.01.01.17.28.html
+3,2026.01.06.13.06.html,try/riotakeda/gemini/2026.01.06.13.06.html
+3,2026.01.22.23.42.html,try/riotakeda/gemini/2026.01.22.23.42.html
+3,2026.01.31.7.24.html,try/riotakeda/gemini/2026.01.31.7.24.html
+3,2026.02.08.19.32.html,try/riotakeda/gemini/2026.02.08.19.32.html
+2,leader.html,try/riotakeda/leader.html
+2,"📁 letter",try/riotakeda/letter/
+3,attachment.pdf,try/riotakeda/letter/attachment.pdf
+3,latest.pdf,try/riotakeda/letter/latest.pdf
+3,"📁 transcript",try/riotakeda/letter/transcript/
+4,comment.docx,try/riotakeda/letter/transcript/comment.docx
+4,forprint.docx,try/riotakeda/letter/transcript/forprint.docx
+2,"📁 recording",try/riotakeda/recording/
+3,2025.12.12.csv,try/riotakeda/recording/2025.12.12.csv
+3,2026.01.05.csv,try/riotakeda/recording/2026.01.05.csv
+3,2026.01.09.csv,try/riotakeda/recording/2026.01.09.csv
+3,2026.01.16.csv,try/riotakeda/recording/2026.01.16.csv
+3,2026.01.23.csv,try/riotakeda/recording/2026.01.23.csv
+3,2026.02.09-3.csv,try/riotakeda/recording/2026.02.09-3.csv
+3,2026.02.09.docx,try/riotakeda/recording/2026.02.09.docx
+3,2026.03.03.csv,try/riotakeda/recording/2026.03.03.csv
+3,player.html,try/riotakeda/recording/player.html
+2,"📁 reply",try/riotakeda/reply/
+3,"📁 transcript",try/riotakeda/reply/transcript/
+4,せをはやみ.docx,try/riotakeda/reply/transcript/せをはやみ.docx
+4,せをはやみ.pdf,try/riotakeda/reply/transcript/せをはやみ.pdf
+3,せをはやみ.pdf,try/riotakeda/reply/せをはやみ.pdf
+2,result.html,try/riotakeda/result.html
+2,"📁 schit.net",try/riotakeda/schit.net/
+3,2023.11.21.html,try/riotakeda/schit.net/2023.11.21.html
+3,2023.12.21.html,try/riotakeda/schit.net/2023.12.21.html
+3,2024.01.09.html,try/riotakeda/schit.net/2024.01.09.html
+3,2024.01.11.html,try/riotakeda/schit.net/2024.01.11.html
+3,2025.06.24.html,try/riotakeda/schit.net/2025.06.24.html
+3,2025.07.01.html,try/riotakeda/schit.net/2025.07.01.html
+3,2025.07.29.html,try/riotakeda/schit.net/2025.07.29.html
+3,2025.07.30.html,try/riotakeda/schit.net/2025.07.30.html
+3,2026.03.07.html,try/riotakeda/schit.net/2026.03.07.html
+3,2026.03.12.html,try/riotakeda/schit.net/2026.03.12.html
+3,2026.03.14.html,try/riotakeda/schit.net/2026.03.14.html
