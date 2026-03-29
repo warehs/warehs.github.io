@@ -2,81 +2,70 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>CSV外部読み込みサイトマップ</title>
-    <style>
-        body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 30px; color: #333; }
-        ul { list-style-type: disc; margin-left: 20px; }
-        li { margin: 8px 0; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
-</head>
+    <title>サイトマップ（CSV連動）</title>
+    </head>
 <body>
 
-    <h1>サイトマップ</h1>
-    <div id="sitemap-output">読み込み中...</div>
+    <div id="sitemap-container"></div>
 
     <script>
-        async function loadSitemap() {
+        async function buildSitemap() {
             try {
-                // 1. CSVファイルを読み込む
                 const response = await fetch('index.csv');
-                if (!response.ok) throw new Error('CSVファイルが見つかりません');
-                
+                if (!response.ok) throw new Error('CSVが見つかりません');
                 const csvText = await response.text();
                 
-                // 2. テキストをパースしてリストを生成
-                const lines = csvText.trim().split(/\r?\n/);
-                const container = document.getElementById('sitemap-output');
-                container.innerHTML = ''; // 「読み込み中」を消す
-
-                let rootUl = document.createElement('ul');
-                container.appendChild(rootUl);
+                // CSVを一行ずつ分解（空行除外）
+                const lines = csvText.trim().split(/\r?\n/).filter(line => line.trim() !== "");
+                const container = document.getElementById('sitemap-container');
                 
-                let stack = [{ level: -1, ul: rootUl }];
+                // 階層管理用のスタック（初期状態はコンテナ）
+                // stack[n] は level n のアイテムを入れるための <ul> を指す
+                let stack = [];
 
                 lines.forEach(line => {
-                    const columns = line.split(',');
-                    if (columns.length < 2) return; // 空行などをスキップ
+                    const [levelStr, title, url] = line.split(',').map(s => s.trim());
+                    const level = parseInt(levelStr);
 
-                    const level = parseInt(columns[0].trim());
-                    const title = columns[1].trim();
-                    const url = columns[2] ? columns[2].trim() : '#';
-
+                    // 1. 新しいリスト項目(li)を作成
                     const li = document.createElement('li');
-                    li.innerHTML = `<a href="${url}">${title}</a>`;
+                    const a = document.createElement('a');
+                    a.href = url || "#";
+                    a.textContent = title;
+                    li.appendChild(a);
 
-                    // 階層の調整
-                    while (stack.length > 1 && stack[stack.length - 1].level >= level) {
-                        stack.pop();
-                    }
-
-                    let parentUl = stack[stack.length - 1].ul;
-
-                    if (level > stack[stack.length - 1].level) {
-                        // 新しい階層（子要素）を作る
-                        const newUl = document.createElement('ul');
-                        if (parentUl.lastElementChild) {
-                            parentUl.lastElementChild.appendChild(newUl);
-                        } else {
-                            parentUl.appendChild(newUl);
+                    // 2. 適切な親 <ul> を見つける or 作る
+                    if (level === 0) {
+                        // ルート（階層0）の場合
+                        if (!stack[0]) {
+                            stack[0] = document.createElement('ul');
+                            container.appendChild(stack[0]);
                         }
-                        newUl.appendChild(li);
-                        stack.push({ level: level, ul: newUl });
+                        stack[0].appendChild(li);
+                        stack = [stack[0]]; // 階層0より下をリセット
                     } else {
-                        // 同じ階層に追加
-                        parentUl.appendChild(li);
+                        // 子階層の場合
+                        // 親（一つ上の階層）の最後の li を探す
+                        let parentLi = stack[level - 1].lastElementChild;
+                        
+                        // その li の中に <ul> がなければ作る
+                        let targetUl = parentLi.querySelector('ul');
+                        if (!targetUl) {
+                            targetUl = document.createElement('ul');
+                            parentLi.appendChild(targetUl);
+                        }
+                        
+                        targetUl.appendChild(li);
+                        stack[level] = targetUl; // 今作った <ul> を現在のレベルとして登録
                     }
                 });
 
             } catch (error) {
-                console.error(error);
-                document.getElementById('sitemap-output').innerText = 'エラー: ' + error.message;
+                console.error('Error:', error);
             }
         }
 
-        // 実行
-        loadSitemap();
+        buildSitemap();
     </script>
 </body>
 </html>
