@@ -1,38 +1,82 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-   <meta charset="UTF-8">
-   <title></title>
+    <meta charset="UTF-8">
+    <title>CSV外部読み込みサイトマップ</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 30px; color: #333; }
+        ul { list-style-type: disc; margin-left: 20px; }
+        li { margin: 8px 0; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
-<ul>
-   <li><a href="url">項目A</a>
-      <ul>
-         <li><a href="url">サブ項目A-1</a></li>
-         <li><a href="url">サブ項目A-2</a></li>
-         <li><a href="url">サブ項目A-3</a></li>
-      </ul>
-   </li>
-   <li><a href="url">項目B</a>
-      <ul>
-         <li><a href="url">サブ項目B-1</a></li>
-         <li><a href="url">サブ項目B-2</a></li>
-         <li><a href="url">サブ項目B-3</a></li>
-      </ul>
-   </li>
-   <li><a href="url">項目C</a>
-      <ul>
-         <li><a href="url">サブ項目C-1</a>
-            <ul>
-               <li><a href="url">サブサブ項目C-1-a</a></li>
-               <li><a href="url">サブサブ項目C-1-b</a></li>
-               <li><a href="url">サブサブ項目C-1-c</a></li>
-            </ul>
-         </li>
-         <li><a href="url">サブ項目C-2</a></li>
-         <li><a href="url">サブ項目C-3</a></li>
-      </ul>
-   </li>
-</ul>
+
+    <h1>サイトマップ</h1>
+    <div id="sitemap-output">読み込み中...</div>
+
+    <script>
+        async function loadSitemap() {
+            try {
+                // 1. CSVファイルを読み込む
+                const response = await fetch('index.csv');
+                if (!response.ok) throw new Error('CSVファイルが見つかりません');
+                
+                const csvText = await response.text();
+                
+                // 2. テキストをパースしてリストを生成
+                const lines = csvText.trim().split(/\r?\n/);
+                const container = document.getElementById('sitemap-output');
+                container.innerHTML = ''; // 「読み込み中」を消す
+
+                let rootUl = document.createElement('ul');
+                container.appendChild(rootUl);
+                
+                let stack = [{ level: -1, ul: rootUl }];
+
+                lines.forEach(line => {
+                    const columns = line.split(',');
+                    if (columns.length < 2) return; // 空行などをスキップ
+
+                    const level = parseInt(columns[0].trim());
+                    const title = columns[1].trim();
+                    const url = columns[2] ? columns[2].trim() : '#';
+
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${url}">${title}</a>`;
+
+                    // 階層の調整
+                    while (stack.length > 1 && stack[stack.length - 1].level >= level) {
+                        stack.pop();
+                    }
+
+                    let parentUl = stack[stack.length - 1].ul;
+
+                    if (level > stack[stack.length - 1].level) {
+                        // 新しい階層（子要素）を作る
+                        const newUl = document.createElement('ul');
+                        if (parentUl.lastElementChild) {
+                            parentUl.lastElementChild.appendChild(newUl);
+                        } else {
+                            parentUl.appendChild(newUl);
+                        }
+                        newUl.appendChild(li);
+                        stack.push({ level: level, ul: newUl });
+                    } else {
+                        // 同じ階層に追加
+                        parentUl.appendChild(li);
+                    }
+                });
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('sitemap-output').innerText = 'エラー: ' + error.message;
+            }
+        }
+
+        // 実行
+        loadSitemap();
+    </script>
 </body>
 </html>
