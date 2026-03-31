@@ -18,7 +18,11 @@
 
         #transcript-list { flex: 1; overflow-y: auto; padding: 10px; -webkit-overflow-scrolling: touch; }
         .row { display: flex; align-items: flex-start; gap: 10px; padding: 15px; background: #fff; margin-bottom: 8px; border-radius: 12px; transition: 0.2s; border: 1px solid transparent; }
-        
+        #play-btn img {
+            display: block;
+            margin: 0 auto;
+            pointer-events: none; /* 画像がクリックの邪魔をしないようにする */
+        }
         /* 現在再生中のハイライト */
         .row.active { border-color: #007aff; background: #e1f0ff; }
         
@@ -44,9 +48,9 @@
 <div id="player-ui">
     <div id="time-display">00:00 / 00:00</div>
     <audio id="audio"></audio>
-<button id="playBtn">
-  <img id="playIcon" src="play.svg" alt="play" width="24">
-</button>
+    <button id="play-btn">
+        <img id="play-icon" src="play.svg" alt="Play" width="45" height="45">
+    </button>
     <div id="repeat-status"></div>
 </div>
 
@@ -58,8 +62,6 @@
     const playBtn = document.getElementById('play-btn');
     const transcriptList = document.getElementById('transcript-list');
     const repeatStatus = document.getElementById('repeat-status');
-    const playIcon = '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>';
-const pauseIcon = '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
     let transcripts = [];
     let startIndex = null;
     let endIndex = null;
@@ -191,13 +193,15 @@ const pauseIcon = '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M6 1
     }
 
     playBtn.onclick = () => audio.paused ? audio.play() : audio.pause();
-audio.onplay = () => {
-    document.getElementById('playIcon').src = 'pause.svg';
-};
+    const playIcon = document.getElementById('play-icon'); // 画像要素を取得
 
-audio.onpause = () => {
-    document.getElementById('playIcon').src = 'play.svg';
-};
+    audio.onplay = () => {
+        playIcon.src = 'pause.svg'; // 再生が始まったら一時停止アイコンに
+    };
+
+    audio.onpause = () => {
+        playIcon.src = 'play.svg';  // 停止したら再生アイコンに
+    };
 
     audio.ontimeupdate = () => {
         const current = audio.currentTime;
