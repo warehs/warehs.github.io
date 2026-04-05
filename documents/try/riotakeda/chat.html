@@ -60,6 +60,26 @@
             margin: 25px 0　8px 0;
             white-space: pre-wrap;
         }
+        /* 画像メッセージ用のスタイル */
+.bubble-image {
+    max-width: 66%; /* 吹き出しと同じ幅 */
+    align-self: flex-end; /* 右寄せ（自分からの送信） */
+    margin: 7px 0;
+}
+
+.bubble-image img {
+    width: 100%; /* 親要素の幅に合わせる */
+    height: auto;
+    border-radius: 30px; /* 画像の角を丸くする */
+    display: block;
+    /* 必要であれば枠線を追加 */
+    border: 1px solid #ddd;
+}
+
+/* もし相手からの画像も載せたい場合はこちら */
+.bubble-image.receive-img {
+    align-self: flex-start; /* 左寄せ */
+}
     </style>
 </head>
 <body>
@@ -311,6 +331,9 @@ DailyTryの指導メモに写真を追加しておきました</div>
     <div class="date-divider">4月2日 (木) 22:51</div>
     <div class="bubble send">枯れ木のような姿から一気に花を咲かせる姿には毎年心打たれます。日本に生まれて良かったと思える瞬間です。
 折角のピンクムーン、写真に納めようと帰り道で写真を撮るも全然綺麗に撮れません。</div>
+<div class="bubble-image">
+    <img src="IMG_1815.jpeg" alt="送信画像">
+</div>
     <div class="date-divider">4月2日 (木) 23:08</div>
     <div class="bubble receive">なんか光線が見えるすごい…。
 以前、空が綺麗だと思って撮ろうとしたけどスマホに収まる一部分では納得いかなくて
