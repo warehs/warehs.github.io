@@ -61,25 +61,57 @@
             white-space: pre-wrap;
         }
         /* 画像メッセージ用のスタイル */
-.bubble-image {
-    max-width: 66%; /* 吹き出しと同じ幅 */
-    align-self: flex-end; /* 右寄せ（自分からの送信） */
-    margin: 7px 0;
-}
+        .bubble-image {
+            max-width: 66%; /* 吹き出しと同じ幅 */
+            align-self: flex-end; /* 右寄せ（自分からの送信） */
+            margin: 7px 0;
+        }
 
-.bubble-image img {
-    width: 100%; /* 親要素の幅に合わせる */
-    height: auto;
-    border-radius: 30px; /* 画像の角を丸くする */
-    display: block;
-    /* 必要であれば枠線を追加 */
-    border: 1px solid #ddd;
-}
+        .bubble-image img {
+            width: 100%; /* 親要素の幅に合わせる */
+            height: auto;
+            border-radius: 30px; /* 画像の角を丸くする */
+            display: block;
+            /* 必要であれば枠線を追加 */
+            border: 1px solid #ddd;
+        }
 
-/* もし相手からの画像も載せたい場合はこちら */
-.bubble-image.receive-img {
-    align-self: flex-start; /* 左寄せ */
-}
+        /* もし相手からの画像も載せたい場合はこちら */
+        .bubble-image.receive-img {
+            align-self: flex-start; /* 左寄せ */
+        }
+        @media (min-width: 600px) {
+            .chat-wrapper {
+                width: 96%;
+                gap: 12px;
+            }
+
+            /* 共通の吹き出し設定 */
+            .bubble {
+                /* 吹き出し自体の最大幅を画面（親要素）の70%に設定 */
+                max-width: 40%;
+                padding: 10px 10px;
+                border-radius: 17px;
+                font-size: 15px;
+                margin: 7px 0;
+            }
+
+            /* 日付などの区切り線（おまけ） */
+            .date-divider {
+                font-size: 5px;
+                margin: 25px 0　8px 0;
+            }
+            /* 画像メッセージ用のスタイル */
+            .bubble-image {
+                max-width: 40%; /* 吹き出しと同じ幅 */
+                margin: 7px 0;
+            }
+
+            .bubble-image img {
+                border-radius: 17px; /* 画像の角を丸くする */
+            }
+
+        }
     </style>
 </head>
 <body>
