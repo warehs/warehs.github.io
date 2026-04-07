@@ -1,0 +1,47 @@
+header{
+    background: #afeeee;
+    width:auto;
+    height: 80px;
+}
+.logo{
+    height: 34px;
+    width: auto;
+    padding: 24px 10px;
+    position: absolute;
+}
+header ul{
+    float: right;
+    padding: 12px;
+    font-size: 16px;
+    font-family:sans-serif;
+}
+header a{
+    padding: 0px 18px;
+}
+footer{
+    width: auto;
+    height: 30px;
+    background: #afeeee;
+    font-family: "Times New Roman";
+    font-style: italic;
+    font-size: 10px;
+    clear:both;
+}
+footer h1{
+    margin: 0px 10px;
+    float: right;
+}
+footer span{
+    font-family: serif;
+}
+main h1{
+    font-family: serif;
+    font-size: 35px;
+    margin:1.25%
+}
+main h2{
+    font-family: serif;
+    font-size: 20px;
+    margin:5px;
+    padding-left:15px;
+}

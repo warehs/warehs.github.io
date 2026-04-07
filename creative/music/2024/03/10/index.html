@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Eurasia - 雑庫Channel</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Eurasia Data</h1>
+        <p>以下をお読みいただき、同意される方は”次へ”ボタンを押してください</p>
+        <h2>利用規約</h2>
+        <p>サービスの利用を始める前に、利用規約全体についての同意をお願いします。</p>
+        <ul>
+        <li>本サイトでは楽曲のパラデータをダウンロードできます。</li>
+        <li>料金は無料です。</li>
+        <li>当該データを使った他の利用者や著作者等に対する悪質な行為を禁じます。</li>
+        <li>当該データの著作権はTck.氏に帰属します。</li>
+        <li>運営等の都合で事前周知なく本サービスの全部又は一部の提供を停止又は中断できるものとします。</li>
+        <li>次へボタンを押した時点で以上に同意したものとします。</li>
+        </ul>
+        <div class="container">
+            <form action="/files/index.html">
+                <p><input type="checkbox" id="consent" name="consent">
+                    <label for="consent">利用規約に同意する</label>
+                </p>
+                <button type="submit" disabled id="submit">次へ</button>
+            </form>
+        </div>
+        <script>
+            const consent = document.querySelector("#consent");
+            const button = document.querySelector("#submit");
+            consent.addEventListener('change', () => {
+                 if (consent.checked === true) {
+                     button.disabled = false;
+                } else {
+                    button.disabled = true;
+                }
+            });
+        </script>
+    <p><br><br>==========<br><br>作曲者：Tck.氏<br>編曲者：Tck.氏<br>音源使用者：スーツ交通・スーツ旅行 チャンネル<br><br>Tck.さんのチャンネル<br>https://www.youtube.com/@tckdot<br><br>原曲（YouTuber スーツ ～第3世代BGM集～）<br>https://linkco.re/MdZNDaFE?lang=ja<br><br>スーツさんのチャンネル<br>https://www.youtube.com/@usiusa7991<br>https://www.youtube.com/@SuitTravel<br><br><br>＊本動画はTck.HPのガイドラインに従って投稿しております。<br>URL:https://www.tck-sounds.com/guideline1<br>＊オーナー所有楽曲 ― ユーザー自身によるカバーの配信(非収益化)に該当<br><br>==========<br></p>
+    </body>
+</html>
